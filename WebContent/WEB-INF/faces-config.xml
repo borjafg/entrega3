@@ -17,13 +17,24 @@
 	<managed-bean>
 		<managed-bean-name>login</managed-bean-name>
 		<managed-bean-class>uo.sdi.presentation.BeanLogin</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>user</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanUser</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 
 	<managed-bean>
 		<managed-bean-name>userRegistry</managed-bean-name>
 		<managed-bean-class>uo.sdi.presentation.BeanUserRegistry</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tripRegistry</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanTripRegistry</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 
 	<managed-bean>
@@ -31,6 +42,13 @@
 		<managed-bean-class>uo.sdi.presentation.BeanTripList</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>passengersList</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanPassengersList</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
 
 
 
@@ -64,51 +82,51 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
-			<to-view-id>/error.xhtml</to-view-id>
+			<to-view-id>/files/error.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>login</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
+			<to-view-id>/files/login.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>signIn</from-outcome>
-			<to-view-id>/registro.xhtml</to-view-id>
+			<to-view-id>/files/registro.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>listTripsPublic</from-outcome>
-			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Publico.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>listTripsRegistered</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>listTripsPromoter</from-outcome>
-			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Promotor.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>registerTrip</from-outcome>
-			<to-view-id>/registrarViaje.xhtml</to-view-id>
+			<to-view-id>/files/registrarViaje.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>applicationsUser</from-outcome>
-			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
+			<to-view-id>/files/listaSolicitudes_Usuario.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
+			<to-view-id>/files/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -119,17 +137,17 @@
 	<!-- ========================== -->
 
 	<navigation-rule>
-		<from-view-id>/login.xhtml</from-view-id>
+		<from-view-id>/files/login.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-outcome>exito</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>fallo</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
+			<to-view-id>/files/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -144,40 +162,40 @@
 	<!-- ========================== -->
 
 	<navigation-rule>
-		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
+		<from-view-id>/files/listaViajes_Registrado.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-action>#{tripList.verInfoViaje()}</from-action>
 			<from-outcome>fallo</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-action>#{tripList.verInfoViaje()}</from-action>
 			<from-outcome>exito</from-outcome>
-			<to-view-id>/listaPasajeros.xhtml</to-view-id>
+			<to-view-id>/files/listaPasajeros.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-action>#{tripList.aplicarViaje()}</from-action>
 			<from-outcome>fallo</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-action>#{tripList.aplicarViaje()}</from-action>
 			<from-outcome>exito</from-outcome>
-			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
+			<to-view-id>/files/listaSolicitudes_Usuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<navigation-rule>
 		<from-view-id>/listaPasajeros.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-outcome>volver</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

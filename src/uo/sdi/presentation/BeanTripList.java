@@ -70,8 +70,8 @@ public class BeanTripList implements Serializable {
 
 			User usuario = contexto
 					.getApplication()
-					.evaluateExpressionGet(contexto, "#{login}",
-							BeanLogin.class).getUsuario();
+					.evaluateExpressionGet(contexto, "#{user}",
+							BeanUser.class).getUser();
 
 			// Si es un usuario registrado no se le mostrarán los viajes a
 			// los que ya ha solicitado asistir. Tampoco se mostrarán aquellos
@@ -300,7 +300,7 @@ public class BeanTripList implements Serializable {
 			User usuario = contexto
 					.getApplication()
 					.evaluateExpressionGet(contexto, "#{login}",
-							BeanLogin.class).getUsuario();
+							BeanUser.class).getUser();
 
 			if (viajeSeleccionado == null) {
 				ErrorMessageManager.register(contexto, "form:tableTrips",

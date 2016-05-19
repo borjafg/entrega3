@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import uo.sdi.infrastructure.Factories;
@@ -14,7 +14,7 @@ import uo.sdi.presentation.util.ErrorMessageManager;
 import alb.util.log.Log;
 
 @ManagedBean(name = "userRegistry")
-@RequestScoped
+@ViewScoped
 public class BeanUserRegistry implements Serializable {
 	private static final long serialVersionUID = -345254566L;
 	private String username = "";
@@ -59,7 +59,7 @@ public class BeanUserRegistry implements Serializable {
 				ErrorMessageManager.register(contexto, "j_idt9:registryButton",
 						"userRegistryError_loginExist",
 						FacesMessage.SEVERITY_ERROR);
-				
+
 				return "fallo";
 			}
 

@@ -7,7 +7,7 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 import uo.sdi.model.User;
-import uo.sdi.presentation.BeanLogin;
+import uo.sdi.presentation.BeanUser;
 
 /**
  * Filtra las peticiones para evitar que el usuario pueda acceder a un recurso
@@ -34,7 +34,7 @@ public class LoginListener implements PhaseListener {
 		/* ============================== */
 
 		String redireccionPublica = "login";
-		String redireccionPrivada = "listaViajes";
+		String redireccionPrivada = "listTripsRegistered";
 
 		/* =================================================== */
 		/* === Id de la vista y navegacion a otras paginas === */
@@ -75,7 +75,7 @@ public class LoginListener implements PhaseListener {
 				|| url.contains("listaSolicitudes_Usuario")
 				|| url.contains("listaViajes_Promotor")
 				|| url.contains("listaViajes_Registrado")
-				|| url.contains("registrarViaje.xhtml");
+				|| url.contains("registrarViaje");
 
 		return proteger;
 	}
@@ -90,7 +90,7 @@ public class LoginListener implements PhaseListener {
 	private boolean estaRegistrado() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(
-				context, "#{login}", BeanLogin.class).getUsuario();
+				context, "#{user}", BeanUser.class).getUser();
 
 		return user != null;
 	}

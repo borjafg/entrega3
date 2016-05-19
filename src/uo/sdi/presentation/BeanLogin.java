@@ -2,27 +2,36 @@ package uo.sdi.presentation;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 import uo.sdi.business.LoginService;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.User;
 import uo.sdi.model.UserStatus;
 import uo.sdi.presentation.util.ErrorMessageManager;
+import uo.sdi.presentation.util.UserManager;
 import alb.util.log.Log;
 
 @ManagedBean(name = "login")
-@RequestScoped
+@ViewScoped
 public class BeanLogin implements Serializable {
 	private static final long serialVersionUID = 6L;
 
-	private User usuario = null;
+	@ManagedProperty("user")
+	private BeanUser user;
 
 	private String userName = "";
 	private String password = "";
+
+	@PostConstruct
+	public void inicializar() {
+		user = (new UserManager()).crearBeanUser();
+	}
 
 	/**
 	 * Comprueba que el usuario y la contraseña son correctos y registra un
@@ -34,12 +43,12 @@ public class BeanLogin implements Serializable {
 	 */
 	public String validar() {
 		LoginService login = Factories.services.createLoginService();
-		User user = null;
+		User usuario = null;
 
 		try {
 			// Verifica que el usuario y la contraseña son correctos y la
 			// cuenta de usuario con la que intenta loguearse no está cancelada
-			user = login.verify(userName, password);
+			usuario = login.verify(userName, password);
 		}
 
 		catch (Exception excep) { // Error al comprobar los datos
@@ -49,10 +58,10 @@ public class BeanLogin implements Serializable {
 			return "error";
 		}
 
-		if (user != null && user.getStatus().equals(UserStatus.ACTIVE)) {
-			usuario = user;
+		if (usuario != null && usuario.getStatus().equals(UserStatus.ACTIVE)) {
+			user.setUser(usuario);
 
-			Log.info("Ha iniciado sesión el usuario: [%s]", user.getLogin());
+			Log.info("Ha iniciado sesión el usuario: [%s]", usuario.getLogin());
 
 			return "exito";
 		}
@@ -67,13 +76,15 @@ public class BeanLogin implements Serializable {
 		}
 	}
 
-	public void logout() {
-		usuario = null;
+	public String logout() {
+		user.setUser(null);
 
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
 
 		Log.debug("El usuario ha cerrado sesion");
+
+		return "logout";
 	}
 
 	/* =========================================== */
@@ -94,9 +105,5 @@ public class BeanLogin implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public User getUsuario() {
-		return usuario;
 	}
 }

@@ -343,7 +343,7 @@ public class BeanTripRegistry {
 
 			FacesContext context = FacesContext.getCurrentInstance();
 			User user = context.getApplication().evaluateExpressionGet(
-					context, "#{login}", BeanLogin.class).getUsuario();
+					context, "#{user}", BeanUser.class).getUser();
 
 			if (user == null // No logueado o usuario cancelado
 					|| (user != null && user.getStatus().equals(
