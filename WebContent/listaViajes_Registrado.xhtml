@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{settings.locale}">
+	<h:head>
+		<title>#{msgs.tituloHead}</title>
+	</h:head>
+	<h:body>
+		<ui:include src="/snippets/menuOpciones_registrado.xhtml" />
+
+		<h:form id="form">
+			<p:dataTable id="tableTrips" value="#{tripList.listaViajes}"
+				var="viaje" emptyMessage="#{msgs.tripList_ErrorEmptyTable}"
+				filteredValue="#{tripList.viajesFiltrados}" selectionMode="single"
+				selection="#{tripList.viajeSeleccionado}" rowKey="#{viaje.id}"
+				sortMode="multiple" rows="#{tripList.filasPagina}" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+				<f:facet name="header">
+					<h2>#{msgs.tripList_title}</h2>
+
+					<h:outputText value="#{msgs.tripList_numberPages_label}" />
+					<p:spacer width="15px" height="1px" />
+
+					<p:inputText value="#{tripList.filasPagina}" />
+					<p:spacer width="15px" height="1px" />
+
+					<p:commandButton value="#{msgs.tripList_numberPages_button}"
+						update="form" />
+				</f:facet>
+
+
+				<p:column headerText="#{msgs.tripList_departurePoint_column}"
+					filterBy="#{viaje.departure}" filterMatchMode="contains"
+					sortBy="#{viaje.departure.toString()}">
+					<h:outputText value="#{viaje.departure}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.tripList_destinationPoint_column}"
+					filterBy="#{viaje.destination}" filterMatchMode="contains"
+					sortBy="#{viaje.destination.toString()}">
+					<h:outputText value="#{viaje.destination}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.tripList_departureDate_column}"
+					filterBy="#{viaje.departureDate}" filterMatchMode="contains"
+					sortBy="#{viaje.departureDate}">
+					<h:outputText value="#{tripList.format(viaje.departureDate)}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.tripList_arrivalDate_column}"
+					filterBy="#{viaje.arrivalDate}" sortBy="#{viaje.arrivalDate}"
+					filterFunction="#{tripList.filterByFecha}">
+					<h:outputText value="#{tripList.format(viaje.arrivalDate)}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.tripList_closingDate_column}"
+					filterBy="#{viaje.closingDate}" sortBy="#{viaje.closingDate}"
+					filterFunction="#{tripList.filterByFecha}">
+					<h:outputText value="#{tripList.format(viaje.closingDate)}" />
+				</p:column>
+
+				<p:column sortBy="#{viaje.estimatedCost}"
+					filterBy="#{viaje.estimatedCost}"
+					filterFunction="#{tripList.filterByPrice}">
+					<f:facet name="header">
+						<h:outputText value="#{msgs.tripList_estimatedCost_column}"
+							id="tituloColumnCost" />
+						<p:tooltip for="tituloColumnCost"
+							value="#{msgs.tripList_estimatedCost_tooltip}" />
+					</f:facet>
+					<h:outputText value="#{viaje.estimatedCost}" />
+
+				</p:column>
+
+				<p:column headerText="#{msgs.tripList_comments_column}"
+					sortBy="#{viaje.comments}">
+					<h:outputText value="#{viaje.comments}" />
+				</p:column>
+			</p:dataTable>
+
+			<h:panelGroup style="display:block;">
+				<p:commandButton update="form" icon="ui-icon-search"
+					style="float: right; margin:20px 10px 20px 15px;"
+					value="#{msgs.tripList_applySeat_button}"
+					action="#{tripList.aplicarViaje}" />
+
+				<p:commandButton style="float: right; margin:20px 10px 20px 15px;"
+					update="form:mensajesTabla" icon="ui-icon-search"
+					value="#{msgs.tripList_moreInfo_button}"
+					action="#{tripList.verInfoViaje}" />
+			</h:panelGroup>
+
+			<h:panelGroup style="clear: both; display:block;">
+				<p:message id="mensajesTabla" for="form:tableTrips"
+					style="float: left;" />
+			</h:panelGroup>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

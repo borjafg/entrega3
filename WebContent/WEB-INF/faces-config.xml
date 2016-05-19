@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<!-- ========================== -->
+	<!-- == Reglas de navegación == -->
+	<!-- ========================== -->
+
+	<managed-bean>
+		<managed-bean-name>settings</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanSettings</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>login</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanLogin</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>userRegistry</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanUserRegistry</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>tripList</managed-bean-name>
+		<managed-bean-class>uo.sdi.presentation.BeanTripList</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+
+
+
+
+	<!-- ========================== -->
+	<!-- == Reglas de navegación == -->
+	<!-- ========================== -->
+
+
+	<!-- == Navegación público == -->
+
+	<navigation-rule>
+		<from-view-id>/listaViajes_Publico.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>listTrips</from-outcome>
+			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>signIn</from-outcome>
+			<to-view-id>/registro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>listTrips</from-outcome>
+			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>signIn</from-outcome>
+			<to-view-id>/registro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>fallo</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>/registro.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>listTrips</from-outcome>
+			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>signIn</from-outcome>
+			<to-view-id>/registro.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!-- == Navegación privado == -->
+
+	<navigation-rule>
+		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>listTrips</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listTripsPromoter</from-outcome>
+			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>registerTrip</from-outcome>
+			<to-view-id>/registrarViaje.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>applicationsUser</from-outcome>
+			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>listTrips</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listTripsPromoter</from-outcome>
+			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>registerTrip</from-outcome>
+			<to-view-id>/registrarViaje.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>applicationsUser</from-outcome>
+			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!-- ================================ -->
+	<!-- == Validadores personalizados == -->
+	<!-- ================================ -->
+
+	<validator>
+		<validator-id>userRegistryLoginExistValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.userRegistry.LoginExistValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>userRegistryLoginSizeValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.userRegistry.LoginSizeValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>userRegistryEmailFormatValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.userRegistry.EmailFormatValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>userRegistryNameSizeValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.userRegistry.NameSizeValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>userRegistrySurnameSizeValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.userRegistry.SurnameSizeValidator</validator-class>
+	</validator>
+
+
+
+	<validator>
+		<validator-id>tripRegistryPostCodeValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.tripRegistry.PostCodeValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>tripRegistryDateFormatValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.tripRegistry.DateFormatValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>tripRegistryCoordinatesValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.tripRegistry.CoordinatesValidator</validator-class>
+	</validator>
+
+	<validator>
+		<validator-id>tripRegistryEstimatedCostValidator</validator-id>
+		<validator-class>uo.sdi.presentation.validators.tripRegistry.EstimatedCostValidator</validator-class>
+	</validator>
+</faces-config>
