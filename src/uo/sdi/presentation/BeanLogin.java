@@ -1,13 +1,11 @@
 package uo.sdi.presentation;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import uo.sdi.business.LoginService;
 import uo.sdi.infrastructure.Factories;
@@ -20,6 +18,9 @@ import alb.util.log.Log;
 @RequestScoped
 public class BeanLogin implements Serializable {
 	private static final long serialVersionUID = 6L;
+
+	private User usuario = null;
+
 	private String userName = "";
 	private String password = "";
 
@@ -49,7 +50,8 @@ public class BeanLogin implements Serializable {
 		}
 
 		if (user != null && user.getStatus().equals(UserStatus.ACTIVE)) {
-			putUserInSession(user);
+			usuario = user;
+
 			Log.info("Ha iniciado sesión el usuario: [%s]", user.getLogin());
 
 			return "exito";
@@ -65,25 +67,18 @@ public class BeanLogin implements Serializable {
 		}
 	}
 
-	private void putUserInSession(User user) {
-		Map<String, Object> session = FacesContext.getCurrentInstance()
-				.getExternalContext().getSessionMap();
-
-		session.put("user", user);
-	}
-
 	public void logout() {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
+		usuario = null;
 
-		session.invalidate();
-		
-		Log.debug("Terminada la sesion del usuario");
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
+
+		Log.debug("El usuario ha cerrado sesion");
 	}
 
-	/* ============================================================== */
-	/* ============================================================== */
-	/* ============================================================== */
+	/* =========================================== */
+	/* ========== Geters y Seters ================ */
+	/* =========================================== */
 
 	public String getUserName() {
 		return userName;
@@ -99,5 +94,9 @@ public class BeanLogin implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public User getUsuario() {
+		return usuario;
 	}
 }

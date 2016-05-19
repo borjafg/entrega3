@@ -115,8 +115,7 @@ public class BeanPassengersList {
 	 * 
 	 */
 	public String volver() {
-		Map<String, Object> sesion = FacesContext.getCurrentInstance()
-				.getExternalContext().getSessionMap();
+		FacesContext
 
 		if (UserManager.comprobarUsuarioRegistrado(sesion) != null) {
 			return "registrado";
