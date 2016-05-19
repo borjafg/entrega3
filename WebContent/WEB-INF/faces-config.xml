@@ -98,7 +98,6 @@
 		<navigation-case>
 			<from-outcome>listTripsPublic</from-outcome>
 			<to-view-id>/files/listaViajes_Publico.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
@@ -109,25 +108,21 @@
 		<navigation-case>
 			<from-outcome>listTripsPromoter</from-outcome>
 			<to-view-id>/files/listaViajes_Promotor.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>registerTrip</from-outcome>
 			<to-view-id>/files/registrarViaje.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>applicationsUser</from-outcome>
 			<to-view-id>/files/listaSolicitudes_Usuario.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/files/login.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -142,7 +137,6 @@
 		<navigation-case>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
