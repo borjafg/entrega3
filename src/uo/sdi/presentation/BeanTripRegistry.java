@@ -2,7 +2,6 @@ package uo.sdi.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +18,6 @@ import uo.sdi.model.Waypoint;
 import uo.sdi.presentation.util.Ciudades;
 import uo.sdi.presentation.util.ErrorMessageManager;
 import uo.sdi.presentation.util.TypeManager;
-import uo.sdi.presentation.util.UserManager;
 import alb.util.log.Log;
 
 @ManagedBean(name = "tripRegistry")
@@ -343,10 +341,9 @@ public class BeanTripRegistry {
 			viaje.setMaxPax(TypeManager.stringToInteger(plazasDisponibles));
 			viaje.setComments(comentarios);
 
-			Map<String, Object> sesion = FacesContext
-			.getCurrentInstance().getExternalContext().getSessionMap();
-			
-			User user = UserManager.comprobarUsuarioRegistrado(sesion);
+			FacesContext context = FacesContext.getCurrentInstance();
+			User user = context.getApplication().evaluateExpressionGet(
+					context, "#{login}", BeanLogin.class).getUsuario();
 
 			if (user == null // No logueado o usuario cancelado
 					|| (user != null && user.getStatus().equals(
@@ -355,7 +352,6 @@ public class BeanTripRegistry {
 			}
 
 			viaje.setPromoterId(user.getId());
-
 			viaje.setStatus(TripStatus.OPEN);
 
 			Factories.services.createTripService().save(viaje);
