@@ -238,11 +238,9 @@ public class BeanTripList implements Serializable {
 		User usuario = UserManager.comprobarUsuarioRegistrado(sesion);
 
 		if (usuario == null) {
-
-			ErrorMessageManager.register(contexto, "form:tableTrips",
-					"tripList_ErrorUserNotLogged", FacesMessage.SEVERITY_ERROR);
-
-			return "fallo";
+			Log.debug("El usuario no esta registrado");
+			//TODO
+			return "nouser";
 		}
 
 		if (viajeSeleccionado != null) {
@@ -316,11 +314,9 @@ public class BeanTripList implements Serializable {
 			User usuario = UserManager.comprobarUsuarioRegistrado(sesion);
 
 			if (usuario == null) {
-				ErrorMessageManager.register(contexto, "form:tableTrips",
-						"tripList_ErrorUserNotLogged",
-						FacesMessage.SEVERITY_ERROR);
-
-				return "fallo";
+				Log.debug("El usuario no esta registrado");
+				//TODO
+				return "noUser";
 			}
 
 			Long idUsuario = usuario.getId();

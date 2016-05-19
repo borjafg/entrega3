@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 
-	<!-- ========================== -->
-	<!-- == Reglas de navegación == -->
-	<!-- ========================== -->
+	<!-- ================================================== -->
+	<!-- ===================   Beans   ==================== -->
+	<!-- ================================================== -->
 
 	<managed-bean>
 		<managed-bean-name>settings</managed-bean-name>
@@ -33,64 +33,90 @@
 	</managed-bean>
 
 
+
+	<!-- ================================================== -->
+	<!-- ==============  Filtros y mensajes  ============== -->
+	<!-- ================================================== -->
+	
 	<application>
 		<resource-bundle>
 			<base-name>messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
 	</application>
+	
+	<lifecycle>
+		<phase-listener>
+			uo.sdi.presentation.listener.LoginListener
+		</phase-listener>
+	</lifecycle>
 
 
 
-
-	<!-- ========================== -->
-	<!-- == Reglas de navegación == -->
-	<!-- ========================== -->
-
-
-	<!-- == Navegación público == -->
+	<!-- ================================================== -->
+	<!-- ============== Reglas de navegación ============== -->
+	<!-- ================================================== -->
 
 	<navigation-rule>
-		<from-view-id>/listaViajes_Publico.xhtml</from-view-id>
-
+		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>listTrips</from-outcome>
-			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>signIn</from-outcome>
 			<to-view-id>/registro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listTripsPublic</from-outcome>
+			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listTripsRegistered</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listTripsPromoter</from-outcome>
+			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>registerTrip</from-outcome>
+			<to-view-id>/registrarViaje.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>applicationsUser</from-outcome>
+			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
 
+	<!-- ======================== -->
+	<!-- == Navegación público == -->
+	<!-- ======================== -->
+
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
-
-		<navigation-case>
-			<from-outcome>listTrips</from-outcome>
-			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>signIn</from-outcome>
-			<to-view-id>/registro.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>exito</from-outcome>
@@ -102,112 +128,39 @@
 			<from-outcome>fallo</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/error.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
 	</navigation-rule>
 
 
-	<navigation-rule>
-		<from-view-id>/registro.xhtml</from-view-id>
-
-		<navigation-case>
-			<from-outcome>listTrips</from-outcome>
-			<to-view-id>/listaViajes_Publico.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>signIn</from-outcome>
-			<to-view-id>/registro.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	<!-- <navigation-rule> <from-view-id>/registro.xhtml</from-view-id> <navigation-case> 
+		<from-outcome>exito</from-outcome> <to-view-id>/listaViajes_Registrado.xhtml</to-view-id> 
+		</navigation-case> </navigation-rule> -->
 
 
-
+	<!-- ======================== -->
 	<!-- == Navegación privado == -->
+	<!-- ======================== -->
 
 	<navigation-rule>
 		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-outcome>listTrips</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>listTripsPromoter</from-outcome>
-			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>registerTrip</from-outcome>
-			<to-view-id>/registrarViaje.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>applicationsUser</from-outcome>
-			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
-			<redirect />
+			<from-action>#{tripList.verInfoViaje()}</from-action>
+			<from-outcome>nouser</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 		
 		<navigation-case>
-			<from-outcome>logout</from-outcome>
+			<from-action>#{tripList.verInfoViaje()}</from-action>
+			<from-outcome>fallo</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-
-
-	<navigation-rule>
-		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
-
-		<navigation-case>
-			<from-outcome>listTrips</from-outcome>
-			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>listTripsPromoter</from-outcome>
-			<to-view-id>/listaViajes_Promotor.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>registerTrip</from-outcome>
-			<to-view-id>/registrarViaje.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>applicationsUser</from-outcome>
-			<to-view-id>/listaSolicitudes_Usuario.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>logout</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
 
 
-	<!-- ================================ -->
-	<!-- == Validadores personalizados == -->
-	<!-- ================================ -->
+	<!-- ================================================== -->
+	<!-- =========== Validadores personalizados =========== -->
+	<!-- ================================================== -->
 
 	<validator>
 		<validator-id>userRegistryLoginExistValidator</validator-id>

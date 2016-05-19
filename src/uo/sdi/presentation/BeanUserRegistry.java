@@ -59,14 +59,13 @@ public class BeanUserRegistry implements Serializable {
 				ErrorMessageManager.register(contexto, "j_idt9:registryButton",
 						"userRegistryError_loginExist",
 						FacesMessage.SEVERITY_ERROR);
+				
+				return "fallo";
 			}
 
 			else {
-				ErrorMessageManager.register(contexto, "j_idt9:registryButton",
-						"genericError", FacesMessage.SEVERITY_ERROR);
+				return "error";
 			}
-
-			return "fallo";
 		}
 
 		return "exito";
