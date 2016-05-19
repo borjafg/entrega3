@@ -5,19 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import uo.sdi.presentation.util.TypeManager;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.presentation.util.ErrorMessageManager;
-import uo.sdi.presentation.util.UserManager;
+import uo.sdi.presentation.util.TypeManager;
 import alb.util.log.Log;
 
 /**
@@ -67,10 +65,13 @@ public class BeanTripList implements Serializable {
 	public void cargarListaViajes() {
 		try {
 			Log.debug("Realizando búsqueda de viajes activos");
-			Map<String, Object> sesion = FacesContext.getCurrentInstance()
-					.getExternalContext().getSessionMap();
 
-			User usuario = UserManager.comprobarUsuarioRegistrado(sesion);
+			FacesContext contexto = FacesContext.getCurrentInstance();
+
+			User usuario = contexto
+					.getApplication()
+					.evaluateExpressionGet(contexto, "#{login}",
+							BeanLogin.class).getUsuario();
 
 			// Si es un usuario registrado no se le mostrarán los viajes a
 			// los que ya ha solicitado asistir. Tampoco se mostrarán aquellos
@@ -231,16 +232,14 @@ public class BeanTripList implements Serializable {
 	 * 
 	 */
 	public String verInfoViaje() {
-		FacesContext contexto = FacesContext.getCurrentInstance();
-		Map<String, Object> sesion = contexto.getExternalContext()
-				.getSessionMap();
+		FacesContext context = FacesContext.getCurrentInstance();
+		BeanLogin user = context.getApplication().evaluateExpressionGet(
+				context, "#{login}", BeanLogin.class);
 
-		User usuario = UserManager.comprobarUsuarioRegistrado(sesion);
-
-		if (usuario == null) {
+		if (user == null) {
 			Log.debug("El usuario no esta registrado");
-			//TODO
-			return "nouser";
+
+			return "fallo";
 		}
 
 		if (viajeSeleccionado != null) {
@@ -271,7 +270,7 @@ public class BeanTripList implements Serializable {
 					+ "viaje, pero no habia seleccionado el viaje");
 
 			ErrorMessageManager
-					.register(contexto, "form:tableTrips",
+					.register(context, "form:tableTrips",
 							"tripList_ErrorNoTripSelected",
 							FacesMessage.SEVERITY_ERROR);
 
@@ -298,6 +297,11 @@ public class BeanTripList implements Serializable {
 		try {
 			FacesContext contexto = FacesContext.getCurrentInstance();
 
+			User usuario = contexto
+					.getApplication()
+					.evaluateExpressionGet(contexto, "#{login}",
+							BeanLogin.class).getUsuario();
+
 			if (viajeSeleccionado == null) {
 				ErrorMessageManager.register(contexto, "form:tableTrips",
 						"tripList_ErrorNoTripSelected",
@@ -308,14 +312,9 @@ public class BeanTripList implements Serializable {
 				return "fallo";
 			}
 
-			Map<String, Object> sesion = contexto.getExternalContext()
-					.getSessionMap();
-			
-			User usuario = UserManager.comprobarUsuarioRegistrado(sesion);
-
 			if (usuario == null) {
 				Log.debug("El usuario no esta registrado");
-				//TODO
+				// TODO
 				return "noUser";
 			}
 

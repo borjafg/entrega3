@@ -1,29 +1,13 @@
 package uo.sdi.presentation.listener;
 
-import java.io.IOException;
-import java.util.Map;
-
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
-import javax.servlet.DispatcherType;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import uo.sdi.model.User;
 import uo.sdi.presentation.BeanLogin;
-import uo.sdi.presentation.util.UserManager;
-import alb.util.log.Log;
 
 /**
  * Filtra las peticiones para evitar que el usuario pueda acceder a un recurso
@@ -105,8 +89,8 @@ public class LoginListener implements PhaseListener {
 
 	private boolean estaRegistrado() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		BeanLogin user = context.getApplication().evaluateExpressionGet(
-				context, "#{user}", BeanLogin.class);
+		User user = context.getApplication().evaluateExpressionGet(
+				context, "#{login}", BeanLogin.class).getUsuario();
 
 		return user != null;
 	}

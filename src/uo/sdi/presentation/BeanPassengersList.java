@@ -1,16 +1,13 @@
 package uo.sdi.presentation;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
-import alb.util.log.Log;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
-import uo.sdi.presentation.util.UserManager;
+import alb.util.log.Log;
 
 /**
  * Almacena una lista de pasajeros cuya asistencia a un viaje esta confirmada.
@@ -109,18 +106,5 @@ public class BeanPassengersList {
 		else {
 			return "";
 		}
-	}
-
-	/**
-	 * 
-	 */
-	public String volver() {
-		FacesContext
-
-		if (UserManager.comprobarUsuarioRegistrado(sesion) != null) {
-			return "registrado";
-		}
-
-		return "publico";
 	}
 }

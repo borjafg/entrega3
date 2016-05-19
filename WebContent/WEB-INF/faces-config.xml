@@ -148,6 +148,35 @@
 
 		<navigation-case>
 			<from-action>#{tripList.verInfoViaje()}</from-action>
+			<from-outcome>fallo</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{tripList.verInfoViaje()}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{tripList.aplicarViaje()}</from-action>
+			<from-outcome>fallo</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{tripList.aplicarViaje()}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/listaViajes_Registrado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<from-view-id>/listaViajes_Registrado.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-action>#{tripList.verInfoViaje()}</from-action>
 			<from-outcome>nouser</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
