@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import uo.sdi.acciones.util.TypeManager;
+import uo.sdi.presentation.util.TypeManager;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
