@@ -68,10 +68,9 @@ public class BeanTripList implements Serializable {
 
 			FacesContext contexto = FacesContext.getCurrentInstance();
 
-			User usuario = contexto
-					.getApplication()
-					.evaluateExpressionGet(contexto, "#{user}",
-							BeanUser.class).getUser();
+			User usuario = contexto.getApplication()
+					.evaluateExpressionGet(contexto, "#{user}", BeanUser.class)
+					.getUser();
 
 			// Si es un usuario registrado no se le mostrarán los viajes a
 			// los que ya ha solicitado asistir. Tampoco se mostrarán aquellos
@@ -85,7 +84,7 @@ public class BeanTripList implements Serializable {
 					+ "viajes activos");
 
 			listaViajes = new ArrayList<Trip>();
-
+			
 			FacesContext contexto = FacesContext.getCurrentInstance();
 			ErrorMessageManager.register(contexto, "form:tableTrips",
 					"tripList_ErrorProcessingRequest",
@@ -299,8 +298,8 @@ public class BeanTripList implements Serializable {
 
 			User usuario = contexto
 					.getApplication()
-					.evaluateExpressionGet(contexto, "#{login}",
-							BeanUser.class).getUser();
+					.evaluateExpressionGet(contexto, "#{login}", BeanUser.class)
+					.getUser();
 
 			if (viajeSeleccionado == null) {
 				ErrorMessageManager.register(contexto, "form:tableTrips",
