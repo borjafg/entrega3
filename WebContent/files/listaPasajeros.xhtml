@@ -7,11 +7,6 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:view locale="#{settings.locale}">
-	<f:metadata>
-		<f:viewParam name="pasajeros" value="#{passengersList.pasajeros}" />
-		<f:viewParam name="viaje" value="#{passengersList.viaje}" />
-	</f:metadata>
-
 	<h:head>
 		<title>#{msgs.tituloHead}</title>
 	</h:head>
@@ -20,7 +15,7 @@
 
 		<h:form id="form">
 			<p:dataTable id="tablePassengers" value="#{passengersList.pasajeros}"
-				var="passenger" filteredValue="#{passengersList.viajesFiltrados}"
+				var="passenger" filteredValue="#{passengersList.pasajerosFiltrados}"
 				rows="#{passengersList.filasPagina}" rowKey="#{passenger.id}"
 				sortMode="multiple" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

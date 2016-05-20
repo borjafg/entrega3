@@ -5,7 +5,7 @@
 	version="2.2">
 
 	<!-- ================================================== -->
-	<!-- =================== Beans ==================== -->
+	<!-- ===================== Beans ====================== -->
 	<!-- ================================================== -->
 
 	<managed-bean>
@@ -70,7 +70,7 @@
 
 
 	<!-- ================================================== -->
-	<!-- ============= Reglas de navegación ============= -->
+	<!-- ============== Reglas de navegación ============== -->
 	<!-- ================================================== -->
 
 
@@ -79,7 +79,7 @@
 	<!-- ========================== -->
 
 	<navigation-rule>
-		<from-view-id>*</from-view-id>
+		<from-view-id>/files/*</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
 			<to-view-id>/files/error.xhtml</to-view-id>
@@ -159,33 +159,24 @@
 		<from-view-id>/files/listaViajes_Registrado.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-action>#{tripList.verInfoViaje()}</from-action>
-			<from-outcome>fallo</from-outcome>
-			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-action>#{tripList.verInfoViaje()}</from-action>
-			<from-outcome>exito</from-outcome>
+			<from-outcome>pasajeros</from-outcome>
 			<to-view-id>/files/listaPasajeros.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
-			<from-action>#{tripList.aplicarViaje()}</from-action>
 			<from-outcome>fallo</from-outcome>
 			<to-view-id>/files/listaViajes_Registrado.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>
-			<from-action>#{tripList.aplicarViaje()}</from-action>
-			<from-outcome>exito</from-outcome>
+			<from-outcome>solicitada</from-outcome>
 			<to-view-id>/files/listaSolicitudes_Usuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
 
 	<navigation-rule>
-		<from-view-id>/listaPasajeros.xhtml</from-view-id>
+		<from-view-id>/files/listaPasajeros.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-outcome>volver</from-outcome>
