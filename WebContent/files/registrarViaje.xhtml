@@ -29,14 +29,14 @@
 
 				<p:outputLabel value="#{msgs.tripRegistry_City_label}: "
 					for="ciudadSalida" />
-				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesSalida()}">
+				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesSalida('1')}">
 					<p:autoComplete value="#{tripRegistry.ciudadSalida}"
 						completeMethod="#{tripRegistry.completarCiudadSalida}"
 						requiredMessage="#{msgs.tripRegistryError_CityRequired}"
 						id="ciudadSalida" dropdown="true" required="true">
 					</p:autoComplete>
 				</ui:fragment>
-				<ui:fragment rendered="#{!tripRegistry.mostrarOpcionesSalida()}">
+				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesSalida('2')}">
 					<p:inputText value="#{tripRegistry.ciudadSalida}" required="true"
 						requiredMessage="#{msgs.tripRegistryError_CityRequired}"
 						id="ciudadSalida" />
@@ -93,14 +93,14 @@
 
 				<p:outputLabel value="#{msgs.tripRegistry_City_label}: "
 					for="ciudadLlegada" />
-				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesLlegada()}">
+				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesLlegada('1')}">
 					<p:autoComplete value="#{tripRegistry.ciudadLlegada}"
 						completeMethod="#{tripRegistry.completarCiudadLlegada()}"
 						requiredMessage="#{msgs.tripRegistryError_CityRequired}"
 						id="ciudadLlegada" dropdown="true" required="true">
 					</p:autoComplete>
 				</ui:fragment>
-				<ui:fragment rendered="#{!tripRegistry.mostrarOpcionesLlegada()}">
+				<ui:fragment rendered="#{tripRegistry.mostrarOpcionesLlegada('2')}">
 					<p:inputText value="#{tripRegistry.ciudadLlegada}" required="true"
 						requiredMessage="#{msgs.tripRegistryError_CityRequired}"
 						id="ciudadLlegada" />

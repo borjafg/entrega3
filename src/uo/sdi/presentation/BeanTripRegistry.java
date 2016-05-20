@@ -220,16 +220,28 @@ public class BeanTripRegistry {
 	 * Misma funcionalidad que el metodo mostrarOpcionesLlegada(), pero en este
 	 * caso comprobando el lugar de salida
 	 * 
+	 * @param componente
+	 *            indica el componente que pregunta si hay que mostrar las
+	 *            opciones:<br/>
+	 *            - "1" -> componente con autocompletado<br/>
+	 *            - "2" -> componente sin autocompletado
+	 * 
 	 * @return true si el usuario escribio algun valor valido en el campo
 	 *         provincia de salida, false en caso contrario
 	 * 
 	 */
-	public boolean mostrarOpcionesSalida() {
+	public boolean mostrarOpcionesSalida(String componente) {
+		boolean mostrar = false;
+		
 		if (provinciaSalida != null && !"".equals(provinciaSalida)) {
-			return true;
+			mostrar = true;
 		}
-
-		return false;
+//
+//		if (mostrar != ) {
+//			
+//		}
+		
+		return true;
 	}
 
 	/**
@@ -237,11 +249,17 @@ public class BeanTripRegistry {
 	 * correspondiente. Si es asi, entonces habra que darle la opcion de elegir
 	 * entre varias posibles ciudades de esa provincia.
 	 * 
+	 * @param componente
+	 *            indica el componente que pregunta si hay que mostrar las
+	 *            opciones:<br/>
+	 *            - "1" -> componente con autocompletado<br/>
+	 *            - "2" -> componente sin autocompletado
+	 *            
 	 * @return true si el usuario escribio algun valor valido en el campo
 	 *         provincia de llegada, false en caso contrario
 	 * 
 	 */
-	public boolean mostrarOpcionesLlegada() {
+	public boolean mostrarOpcionesLlegada(String componente) {
 		if (provinciaLlegada != null && !"".equals(provinciaLlegada)) {
 			return true;
 		}
@@ -342,8 +360,9 @@ public class BeanTripRegistry {
 			viaje.setComments(comentarios);
 
 			FacesContext context = FacesContext.getCurrentInstance();
-			User user = context.getApplication().evaluateExpressionGet(
-					context, "#{user}", BeanUser.class).getUser();
+			User user = context.getApplication()
+					.evaluateExpressionGet(context, "#{user}", BeanUser.class)
+					.getUser();
 
 			if (user == null // No logueado o usuario cancelado
 					|| (user != null && user.getStatus().equals(
