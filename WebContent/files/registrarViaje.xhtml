@@ -12,11 +12,19 @@
 	</h:head>
 	<h:body>
 		<ui:include src="/snippets/menuOpciones_registrado.xhtml" />
-
-		<h1>#{msgs.tripRegistry_title}</h1>
-
+		
+		
 		<h:form id="form">
-			<p:outputLabel value="#{}" for="" />
+			<p:commandButton id="cargaDatos" style="float:right;"
+				value="Precarga de datos (Por implementar)" />
+
+			<h1>#{msgs.tripRegistry_title}</h1>
+
+
+			<h3>
+				<p:outputLabel for="lugarSalida"
+					value="#{msgs.tripRegistry_DeparturePoint_label}" />
+			</h3>
 
 			<h:panelGrid style="display:block; margin: 10px 10px 10px 10px;"
 				id="lugarSalida" columns="3" cellpadding="5">
@@ -73,7 +81,10 @@
 
 
 
-			<p:outputLabel value="#{}" for="" />
+			<h3>
+				<p:outputLabel for="lugarLlegada"
+					value="#{msgs.tripRegistry_DestinationPointPoint_label}" />
+			</h3>
 
 			<h:panelGrid style="display:block; margin: 10px 10px 10px 10px;"
 				id="lugarLlegada" columns="3" cellpadding="5">
@@ -129,7 +140,10 @@
 
 
 
-			<p:outputLabel value="#{}" for="" />
+			<h3>
+				<p:outputLabel value="#{msgs.tripRegistry_Dates_label}"
+					for="fechasViaje" />
+			</h3>
 
 			<h:panelGrid style="display:block; margin: 10px 10px 10px 10px;"
 				id="fechasViaje" columns="3" cellpadding="5">
@@ -160,7 +174,10 @@
 
 
 
-			<p:outputLabel value="#{}" for="" />
+			<h3>
+				<p:outputLabel value="#{msgs.tripRegistry_OtherInformation_label}"
+					for="OtrosDatos" />
+			</h3>
 
 			<h:panelGrid style="display:block; margin: 10px 10px 10px 10px;"
 				id="OtrosDatos" columns="3" cellpadding="5">
@@ -198,7 +215,7 @@
 				<p:outputLabel value="#{msgs.tripRegistry_Comments_label}: "
 					for="comentarios" />
 				<p:inputTextarea rows="6" cols="55" id="comentarios"
-					counter="caracteresRestantes" maxlength="10" autoResize="true"
+					counter="caracteresRestantes" maxlength="320" autoResize="true"
 					counterTemplate="{0} #{msgs.tripRegistryCharacters}."
 					requiredMessage="#{msgs.tripRegistryError_CommentsRequired}"
 					required="true" value="#{tripRegistry.comentarios}" />
