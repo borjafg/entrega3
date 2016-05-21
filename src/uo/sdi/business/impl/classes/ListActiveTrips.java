@@ -11,7 +11,7 @@ import uo.sdi.model.User;
 
 public class ListActiveTrips {
     private String ERROR = "Error al buscar la lista de viajes activos";
-    
+
     /**
      * Busca una lista de viajes activos.
      * 

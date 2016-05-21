@@ -4,6 +4,7 @@ import java.util.List;
 
 import uo.sdi.business.TripService;
 import uo.sdi.business.impl.classes.CancelTrip;
+import uo.sdi.business.impl.classes.GetInfoTrip;
 import uo.sdi.business.impl.classes.ListActiveTrips;
 import uo.sdi.business.impl.classes.ListPromoterTrips;
 import uo.sdi.business.impl.classes.SaveTrip;
@@ -29,5 +30,10 @@ public class TripServiceImpl implements TripService {
     @Override
     public void cancelTrip(Trip trip, User user) throws Exception {
 	new CancelTrip().cancel(trip, user);
+    }
+
+    @Override
+    public Trip getInfoTrip(Long id) throws Exception {
+	return new GetInfoTrip().getInfo(id);
     }
 }

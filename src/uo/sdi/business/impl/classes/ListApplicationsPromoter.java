@@ -25,10 +25,10 @@ public class ListApplicationsPromoter {
 	    List<Application> aux;
 
 	    for (Trip viaje : listaViajesPromotor) {
-		aux = Factories.persistence.newApplicationDao()
-			.findByTripId(viaje.getId());
-		
-		for(Application solicitud : aux) {
+		aux = Factories.persistence.newApplicationDao().findByTripId(
+			viaje.getId());
+
+		for (Application solicitud : aux) {
 		    listaSolicitudes.add(solicitud);
 		}
 	    }

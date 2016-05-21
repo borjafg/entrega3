@@ -13,6 +13,7 @@ public class CancelTrip {
     private final String NO_PROMOTOR = "El usuario no es el promotor del viaje";
     private final String VIAJE_CERRADO = "Ya paso la fecha de cierre del viaje";
     private final String VIAJE_YA_CANCELADO = "El viaje ya fue cancelado";
+    private final String ERROR = "Error al cancelar el viaje";
 
     /*
      * Contienen el usuario y el viaje (extraidos de la base de datos por si su
@@ -49,7 +50,7 @@ public class CancelTrip {
 		throw excep;
 
 	    default: // En cualquier otro caso
-		throw new Exception("Error al cancelar el viaje");
+		throw new Exception(ERROR);
 	    }
 	}
     }

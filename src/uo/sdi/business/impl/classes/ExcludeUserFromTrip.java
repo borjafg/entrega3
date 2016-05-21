@@ -70,9 +70,10 @@ public class ExcludeUserFromTrip {
 	    throw new Exception(USUARIO_INVALIDO);
 	}
 
-	User usuario = Factories.persistence.newUserDao().findById(idUser);
+	User promotor = Factories.persistence.newUserDao().findById(idUser);
 
-	if (usuario == null || usuario.getStatus().equals(UserStatus.CANCELLED)) {
+	if (promotor == null
+		|| promotor.getStatus().equals(UserStatus.CANCELLED)) {
 	    throw new Exception(USUARIO_INVALIDO);
 	}
 
@@ -81,7 +82,9 @@ public class ExcludeUserFromTrip {
 	}
 
 	Application solicitud = Factories.persistence.newApplicationDao()
-		.findById(new Long[] { idUser, application.getTripId() });
+		.findById(
+			new Long[] { application.getUserId(),
+				application.getTripId() });
 
 	if (solicitud == null) {
 	    throw new Exception(SOLICITUD_INVALIDA);
@@ -98,7 +101,7 @@ public class ExcludeUserFromTrip {
 	    throw new Exception(VIAJE_CANCELADO);
 	}
 
-	if (!usuario.getId().equals(viaje.getPromoterId())) {
+	if (!promotor.getId().equals(viaje.getPromoterId())) {
 	    throw new Exception(NO_PERMITIDO);
 	}
 

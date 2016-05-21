@@ -16,14 +16,14 @@ public class CancelApplication {
     public void cancel(Long idUser, Application application) throws Exception {
 	try {
 	    validar(idUser, application);
-	    
+
 	    Seat asistencia = new Seat();
-	    
+
 	    asistencia.setUserId(idUser);
 	    asistencia.setTripId(application.getTripId());
 	    asistencia.setStatus(SeatStatus.EXCLUDED);
 	    asistencia.setComment("Cancelado por el solicitante");
-	    
+
 	    Factories.persistence.newSeatDao().save(asistencia);
 	}
 
@@ -56,6 +56,15 @@ public class CancelApplication {
 	}
 
 	if (application == null) {
+	    throw new Exception(SOLICITUD_INVALIDA);
+	}
+
+	Application solicitud = Factories.persistence.newApplicationDao()
+		.findById(
+			new Long[] { application.getUserId(),
+				application.getTripId() });
+
+	if (solicitud != null) {
 	    throw new Exception(SOLICITUD_INVALIDA);
 	}
 
