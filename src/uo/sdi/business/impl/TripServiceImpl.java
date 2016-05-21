@@ -3,6 +3,7 @@ package uo.sdi.business.impl;
 import java.util.List;
 
 import uo.sdi.business.TripService;
+import uo.sdi.business.impl.classes.CancelTrip;
 import uo.sdi.business.impl.classes.ListActiveTrips;
 import uo.sdi.business.impl.classes.ListPromoterTrips;
 import uo.sdi.business.impl.classes.SaveTrip;
@@ -21,7 +22,12 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public void save(Trip viaje) throws Exception {
-	new SaveTrip().save(viaje);
+    public void save(Trip trip) throws Exception {
+	new SaveTrip().save(trip);
+    }
+
+    @Override
+    public void cancelTrip(Trip trip, User user) throws Exception {
+	new CancelTrip().cancel(trip, user);
     }
 }

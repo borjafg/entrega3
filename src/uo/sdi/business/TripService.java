@@ -22,5 +22,7 @@ public interface TripService {
      */
     public List<Trip> getPromoterTrips(User user) throws Exception;
 
-    public void save(Trip viaje) throws Exception;
+    public void save(Trip trip) throws Exception;
+    
+    public void cancelTrip(Trip trip, User user) throws Exception;
 }
