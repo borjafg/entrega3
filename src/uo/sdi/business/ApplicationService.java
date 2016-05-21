@@ -101,6 +101,6 @@ public interface ApplicationService {
      * @throws Exception
      *             Ha ocurrido un error al cancelar la asistencia
      */
-    public void excludeUserFromTrip_Applied(Long idPromotor,
-	    Application application) throws Exception;
+    public void excludeUserFromTrip(Long idPromotor, Application application)
+	    throws Exception;
 }

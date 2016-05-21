@@ -11,27 +11,35 @@ import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 import uo.sdi.model.UserStatus;
 
-public class AcceptApplication {
+public class ExcludeUserFromTrip {
     private final String USUARIO_INVALIDO = "El usuario no es valido";
     private final String SOLICITUD_INVALIDA = "La solicitud no es valida";
-    private final String NO_PERMITIDO = "Solo el promotor puede aceptar una "
-    	+ "solicitud";
     private final String VIAJE_CANCELADO = "El viaje fue cancelado";
+    private final String NO_PERMITIDO = "Solo el promotor puede cancelar una "
+	    + "solicitud";
     private final String FUERA_PLAZO = "Ya paso la fecha de cierre del viaje";
-    private final String ERROR = "Ha ocurrido un error al aceptar la solicitud";
+    private final String ERROR = "Ha ocurrido un error al excluir al usuario del"
+	    + "del viaje";
 
-    public void accept(Long idUser, Application application) throws Exception {
+    public void exclude(Long idUser, Application application) throws Exception {
 	try {
 	    validar(idUser, application);
 
-	    Seat asistencia = new Seat();
+	    Seat asistencia = Factories.persistence.newSeatDao().findById(
+		    new Long[] { application.getUserId(),
+			    application.getTripId() });
 
-	    asistencia.setUserId(idUser);
-	    asistencia.setTripId(application.getTripId());
-	    asistencia.setStatus(SeatStatus.EXCLUDED);
-	    asistencia.setComment("Aceptada por el promotor");
+	    // No fue ni aceptado ni rechazado
+	    if (asistencia == null) {
+		asistencia = new Seat();
 
-	    Factories.persistence.newSeatDao().save(asistencia);
+		asistencia.setUserId(application.getUserId());
+		asistencia.setTripId(application.getTripId());
+		asistencia.setStatus(SeatStatus.EXCLUDED);
+		asistencia.setComment("Rechazada por el promotor");
+
+		Factories.persistence.newSeatDao().save(asistencia);
+	    }
 	}
 
 	catch (Exception excep) {
@@ -44,10 +52,10 @@ public class AcceptApplication {
 
 	    case NO_PERMITIDO:
 		throw excep;
-		
+
 	    case VIAJE_CANCELADO:
 		throw excep;
-		
+
 	    case FUERA_PLAZO:
 		throw excep;
 
@@ -75,7 +83,7 @@ public class AcceptApplication {
 	Application solicitud = Factories.persistence.newApplicationDao()
 		.findById(new Long[] { idUser, application.getTripId() });
 
-	if (solicitud != null) {
+	if (solicitud == null) {
 	    throw new Exception(SOLICITUD_INVALIDA);
 	}
 
@@ -89,11 +97,11 @@ public class AcceptApplication {
 	if (viaje.getStatus().equals(TripStatus.CANCELLED)) {
 	    throw new Exception(VIAJE_CANCELADO);
 	}
-	
+
 	if (!usuario.getId().equals(viaje.getPromoterId())) {
 	    throw new Exception(NO_PERMITIDO);
 	}
-	
+
 	if (viaje.getClosingDate().before(new Date())) {
 	    throw new Exception(FUERA_PLAZO);
 	}

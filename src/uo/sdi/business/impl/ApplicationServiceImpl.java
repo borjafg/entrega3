@@ -6,6 +6,7 @@ import uo.sdi.business.ApplicationService;
 import uo.sdi.business.impl.classes.AcceptApplication;
 import uo.sdi.business.impl.classes.ApplicateForTrip;
 import uo.sdi.business.impl.classes.CancelApplication;
+import uo.sdi.business.impl.classes.ExcludeUserFromTrip;
 import uo.sdi.business.impl.classes.ListApplicationsPromoter;
 import uo.sdi.business.impl.classes.ListApplicationsUser;
 import uo.sdi.model.Application;
@@ -32,7 +33,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public void cancelApplication(Long idUser, Application application)
 	    throws Exception {
-	
+
 	new CancelApplication().cancel(idUser, application);
     }
 
@@ -44,9 +45,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public void excludeUserFromTrip_Applied(Long idPromotor,
-	    Application application) throws Exception {
+    public void excludeUserFromTrip(Long idPromotor, Application application)
+	    throws Exception {
 
-//	new ExcludeUserFromTrip_Applied().exclude(idPromotor, application);
+	new ExcludeUserFromTrip().exclude(idPromotor, application);
     }
 }

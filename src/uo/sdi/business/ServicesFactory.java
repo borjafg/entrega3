@@ -11,7 +11,5 @@ public interface ServicesFactory
 
 	public TripService createTripService();
 
-	public SeatService createSeatService();
-
 	public ApplicationService createApplicationService();
 }

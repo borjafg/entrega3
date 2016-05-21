@@ -2,7 +2,6 @@ package uo.sdi.business.impl;
 
 import uo.sdi.business.ApplicationService;
 import uo.sdi.business.LoginService;
-import uo.sdi.business.SeatService;
 import uo.sdi.business.ServicesFactory;
 import uo.sdi.business.TripService;
 import uo.sdi.business.UserService;
@@ -26,12 +25,7 @@ public class ServicesFactoryImpl implements ServicesFactory
 	@Override
 	public TripService createTripService() {
 		return new TripServiceImpl();
-	}
-
-	@Override
-	public SeatService createSeatService() {
-		return new SeatServiceImpl();
-	}
+	}  
 
 	@Override
 	public ApplicationService createApplicationService() {
