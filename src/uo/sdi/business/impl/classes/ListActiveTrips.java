@@ -10,47 +10,60 @@ import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 
 public class ListActiveTrips {
-	/**
-	 * Busca una lista de viajes activos.
-	 * 
-	 * @param user
-	 *            usuario para filtrar la lista de viajes (buscar aquellos a los
-	 *            que no haya solicitado asistir y en los que no sea el
-	 *            promotor). Si es null entonces no se realizará un filtrado.
-	 * 
-	 * @return lista de viajes activos
-	 * 
-	 * @throws Exception
-	 *             Ha ocurrido algun error al hacer la busqueda
-	 * 
-	 */
-	public List<Trip> getTrips(User user) throws Exception {
-		List<Trip> listaViajes;
-		List<Trip> viajesBorrar = new ArrayList<Trip>();
+    /**
+     * Busca una lista de viajes activos.
+     * 
+     * @param user
+     *            usuario para filtrar la lista de viajes (buscar aquellos a los
+     *            que no haya solicitado asistir y en los que no sea el
+     *            promotor). Si es null entonces no se realizará un filtrado.
+     * 
+     * @return lista de viajes activos
+     * 
+     * @throws Exception
+     *             Ha ocurrido algun error al hacer la busqueda
+     * 
+     */
+    public List<Trip> getTrips(User user) throws Exception {
+	// Lista de viajes sin filtrar
+	List<Trip> listaViajes;
 
-		if (user != null) {
-			listaViajes = Factories.persistence.newTripDao()
-					.findAllTrips_NoUser(user.getId());
+	// Lista de viaje activos
+	List<Trip> listaFiltrada = new ArrayList<Trip>();
+
+	// ==============================
+	// (1) Obtener la lista de viajes
+	// ==============================
+	try {
+	    if (user != null) {
+		listaViajes = Factories.persistence.newTripDao()
+			.findAllTrips_NoUser(user.getId());
+	    }
+
+	    else {
+		listaViajes = Factories.persistence.newTripDao().findAll();
+	    }
+
+	    // ==============================
+	    // (2) Filtrar la lista de viajes
+	    //
+	    // - No paso la fecha de cierre
+	    // - El viaje esta abierto
+	    // ==============================
+
+	    for (Trip viaje : listaViajes) {
+		if (viaje.getClosingDate().after(new Date())
+			&& viaje.getStatus().equals(TripStatus.OPEN)) {
+
+		    listaFiltrada.add(viaje);
 		}
-
-		else {
-			listaViajes = Factories.persistence.newTripDao().findAll();
-		}
-
-		// (1) Comprobar de que viajes paso la fecha cierre
-		for (Trip viaje : listaViajes) {
-			if (viaje.getClosingDate().before(new Date())
-					|| viaje.getStatus().equals(TripStatus.CANCELLED)) {
-				
-				viajesBorrar.add(viaje);
-			}
-		}
-
-		// (2) Borrar los viajes que no están activos
-		for (Trip viaje : viajesBorrar) {
-			listaViajes.remove(viaje);
-		}
-
-		return listaViajes;
+	    }
 	}
+
+	catch (Exception excep) {
+	    throw new Exception("Error al buscar los viajes");
+	}
+
+	return listaFiltrada;
+    }
 }

@@ -328,16 +328,6 @@ public class BeanTripRegistry {
 	}
 
 	catch (Exception excep) {
-	    if (excep.getMessage().equals("Viaje ya existe")) {
-		Log.error("El viaje ya existe");
-
-		ErrorMessageManager.register(FacesContext.getCurrentInstance(),
-			"form:guardarViaje", "tripRegistryError_TripExist",
-			FacesMessage.SEVERITY_ERROR);
-
-		return "fallo";
-	    }
-
 	    if (excep.getMessage().equals("Usuario invalido")) {
 		Log.error("El usuario que intenta crear el viaje no es valido"
 			+ "o su sesion ha expirado");
