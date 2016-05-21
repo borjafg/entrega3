@@ -49,15 +49,15 @@ public class BeanPassengersList {
 
 	pasajeros = (List<User>) request.getAttribute("pasajeros");
 	viaje = (Trip) request.getAttribute("viaje");
-	
-	if (pasajeros == null || viaje == null)
-	{
+
+	if (pasajeros == null || viaje == null) {
 	    Log.error("No se han podido listar los pasajeros");
 	}
-	
+
 	else {
-	    Log.debug("Se ha obtenido la lista de pasajeros con id [%d] conteniendo"
-		+ "[%d] pasajeros", viaje.getId(), pasajeros.size());
+	    Log.debug(
+		    "Se ha obtenido la lista de pasajeros con id [%d] conteniendo"
+			    + "[%d] pasajeros", viaje.getId(), pasajeros.size());
 	}
     }
 

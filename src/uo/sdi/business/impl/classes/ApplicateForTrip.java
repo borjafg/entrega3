@@ -10,20 +10,27 @@ import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
 
 public class ApplicateForTrip {
+    private final String VIAJE_INEXISTENTE = "El viaje no existe";
+    private final String VIAJE_CERRADO = "El viaje esta cerrado";
+    private final String VIAJE_CANCELADO = "El viaje esta cancelado";
+    private final String YA_SOLICITADO = "Ya habia solicitado asistir al viaje";
+    private final String OTRA_CAUSA = "No se ha podido guardar la solicitud de "
+    	+ "asistencia al viaje";
+    
     public void applicate(Long idTrip, Long idUser) throws Exception {
 	try {
 	    Trip viaje = Factories.persistence.newTripDao().findById(idTrip);
 
 	    if (viaje == null) {
-		throw new Exception("Viaje inexistente");
+		throw new Exception(VIAJE_INEXISTENTE);
 	    }
 
 	    if (viaje.getClosingDate().before(new Date())) {
-		throw new Exception("Viaje cerrado");
+		throw new Exception(VIAJE_CERRADO);
 	    }
 
 	    else if (viaje.equals(TripStatus.CANCELLED)) {
-		throw new Exception("Viaje cancelado");
+		throw new Exception(VIAJE_CANCELADO);
 	    }
 
 	    else {
@@ -40,22 +47,22 @@ public class ApplicateForTrip {
 	    if (excep.getCause() != null
 		    && excep.getCause() instanceof EntityExistsException) {
 
-		throw new Exception("Ya solicitado");
+		throw new Exception(YA_SOLICITADO);
 	    }
 
 	    switch (excep.getMessage()) {
 
-	    case "Viaje inexistente":
+	    case VIAJE_INEXISTENTE:
 		throw excep;
 
-	    case "Viaje cerrado":
+	    case VIAJE_CERRADO:
 		throw excep;
 
-	    case "Viaje cancelado":
+	    case VIAJE_CANCELADO:
 		throw excep;
 
 	    default:
-		throw new Exception(); // Otra causa
+		throw new Exception(OTRA_CAUSA); // Otra causa
 	    }
 	}
     }

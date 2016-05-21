@@ -9,6 +9,8 @@ import uo.sdi.model.SeatStatus;
 import uo.sdi.model.User;
 
 public class FindPassengers {
+    private final String ERROR = "Error al buscar los pasajeros del viaje";
+    
     public List<User> find(Long idTrip) throws Exception {
 	try {
 	    List<Seat> asistencias = Factories.persistence.newSeatDao()
@@ -33,7 +35,7 @@ public class FindPassengers {
 	}
 
 	catch (Exception excep) {
-	    throw new Exception("Error al buscar los pasajeros del viaje");
+	    throw new Exception(ERROR);
 	}
     }
 }

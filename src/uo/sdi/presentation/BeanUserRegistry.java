@@ -16,106 +16,106 @@ import alb.util.log.Log;
 @ManagedBean(name = "userRegistry")
 @ViewScoped
 public class BeanUserRegistry implements Serializable {
-	private static final long serialVersionUID = -345254566L;
-	private String username = "";
-	private String password = "";
-	private String repeatPassword = "";
-	private String email = "";
-	private String name = "";
-	private String surname = "";
+    private static final long serialVersionUID = -345254566L;
+    private String username = "";
+    private String password = "";
+    private String repeatPassword = "";
+    private String email = "";
+    private String name = "";
+    private String surname = "";
 
-	/**
-	 * Comprueba que el usuario y la contraseña son correctos. <br />
-	 * Registra un error (FacesMessage) si no lo son o si ocurre un error
-	 * durante la comprobación (por ejemplo, un fallo de conexión a la base de
-	 * datos)
-	 * 
-	 * @return exito si son correctos y logra almacenarlos, fallo en cualquier
-	 *         otro caso
-	 * 
-	 */
-	public String registrar() {
-		User user = new User();
+    /**
+     * Comprueba que el usuario y la contraseña son correctos. <br />
+     * Registra un error (FacesMessage) si no lo son o si ocurre un error
+     * durante la comprobación (por ejemplo, un fallo de conexión a la base de
+     * datos)
+     * 
+     * @return exito si son correctos y logra almacenarlos, fallo en cualquier
+     *         otro caso
+     * 
+     */
+    public String registrar() {
+	User user = new User();
 
-		user.setLogin(username);
-		user.setPassword(password);
-		user.setEmail(email);
-		user.setName(name);
-		user.setSurname(surname);
-		user.setStatus(UserStatus.ACTIVE);
+	user.setLogin(username);
+	user.setPassword(password);
+	user.setEmail(email);
+	user.setName(name);
+	user.setSurname(surname);
+	user.setStatus(UserStatus.ACTIVE);
 
-		try {
-			Factories.services.createUserService().save(user);
+	try {
+	    Factories.services.createUserService().save(user);
 
-			Log.debug("Se ha registrado a un nuevo usuario [login = [%s], +"
-					+ "email = [%s], nombre = [%s], apellidos = [%s]]",
-					username, email, name, surname);
-		}
-
-		catch (Exception excep) { // Error al ejecutar la comprobación
-			FacesContext contexto = FacesContext.getCurrentInstance();
-
-			if (excep.getMessage().equals("This login is already in use")) {
-				ErrorMessageManager.register(contexto, "j_idt9:registryButton",
-						"userRegistryError_loginExist",
-						FacesMessage.SEVERITY_ERROR);
-
-				return "fallo";
-			}
-
-			else {
-				return "error";
-			}
-		}
-
-		return "exito";
+	    Log.debug("Se ha registrado a un nuevo usuario [login = [%s], +"
+		    + "email = [%s], nombre = [%s], apellidos = [%s]]",
+		    username, email, name, surname);
 	}
 
-	public String getUsername() {
-		return username;
+	catch (Exception excep) { // Error al ejecutar la comprobación
+	    FacesContext contexto = FacesContext.getCurrentInstance();
+
+	    if (excep.getMessage().equals("Este login ya existe")) {
+		ErrorMessageManager.register(contexto, "j_idt9:registryButton",
+			"userRegistryError_loginExist",
+			FacesMessage.SEVERITY_ERROR);
+
+		return "fallo";
+	    }
+
+	    else {
+		return "error";
+	    }
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	return "exito";
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+	return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+	this.username = username;
+    }
 
-	public String getRepeatPassword() {
-		return repeatPassword;
-	}
+    public String getPassword() {
+	return password;
+    }
 
-	public void setRepeatPassword(String repeatPassword) {
-		this.repeatPassword = repeatPassword;
-	}
+    public void setPassword(String password) {
+	this.password = password;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getRepeatPassword() {
+	return repeatPassword;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setRepeatPassword(String repeatPassword) {
+	this.repeatPassword = repeatPassword;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public String getSurname() {
+	return surname;
+    }
+
+    public void setSurname(String surname) {
+	this.surname = surname;
+    }
 }

@@ -10,6 +10,8 @@ import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 
 public class ListActiveTrips {
+    private String ERROR = "Error al buscar la lista de viajes activos";
+    
     /**
      * Busca una lista de viajes activos.
      * 
@@ -61,7 +63,7 @@ public class ListActiveTrips {
 	}
 
 	catch (Exception excep) {
-	    throw new Exception("Error al buscar los viajes");
+	    throw new Exception(ERROR);
 	}
 
 	return listaFiltrada;

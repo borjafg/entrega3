@@ -13,45 +13,45 @@ import alb.util.log.Log;
 @ManagedBean(name = "settings")
 @SessionScoped
 public class BeanSettings implements Serializable {
-	private static final long serialVersionUID = -1445466L;
+    private static final long serialVersionUID = -1445466L;
 
-	private static final Locale ENGLISH = new Locale("en");
-	private static final Locale SPANISH = new Locale("es");
-	private Locale locale = new Locale("es");
+    private static final Locale ENGLISH = new Locale("en");
+    private static final Locale SPANISH = new Locale("es");
+    private Locale locale = new Locale("es");
 
-	public Locale getLocale() {
-		return (locale);
+    public Locale getLocale() {
+	return (locale);
+    }
+
+    public void setSpanish(ActionEvent event) {
+	locale = SPANISH;
+
+	try {
+	    FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+
+	    Log.debug("Se ha cambiado el idioma a [%s]",
+		    locale.getDisplayLanguage());
 	}
 
-	public void setSpanish(ActionEvent event) {
-		locale = SPANISH;
+	catch (Exception ex) {
+	    Log.error("No se ha podido cambiar el idioma a español. El idioma "
+		    + "actual es [%s]", locale.getDisplayLanguage());
+	}
+    }
 
-		try {
-			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    public void setEnglish(ActionEvent event) {
+	locale = ENGLISH;
 
-			Log.debug("Se ha cambiado el idioma a [%s]",
-					locale.getDisplayLanguage());
-		}
+	try {
+	    FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 
-		catch (Exception ex) {
-			Log.error("No se ha podido cambiar el idioma a español. El idioma "
-					+ "actual es [%s]", locale.getDisplayLanguage());
-		}
+	    Log.debug("Se ha cambiado el idioma a [%s]",
+		    locale.getDisplayLanguage());
 	}
 
-	public void setEnglish(ActionEvent event) {
-		locale = ENGLISH;
-
-		try {
-			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-
-			Log.debug("Se ha cambiado el idioma a [%s]",
-					locale.getDisplayLanguage());
-		}
-
-		catch (Exception ex) {
-			Log.error("No se ha podido cambiar el idioma a inglés. El idioma "
-					+ "actual es [%s]", locale.getDisplayLanguage());
-		}
+	catch (Exception ex) {
+	    Log.error("No se ha podido cambiar el idioma a inglés. El idioma "
+		    + "actual es [%s]", locale.getDisplayLanguage());
 	}
+    }
 }

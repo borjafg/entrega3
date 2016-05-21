@@ -9,28 +9,34 @@ import uo.sdi.model.User;
 import uo.sdi.model.UserStatus;
 
 public class ListPromoterTrips {
+    private final String USUARIO_INVALIDO = "El usuario no es valido";
+    private final String ERROR = "Error al buscar los viajes";
+
     public List<Trip> getTrips(User user) throws Exception {
-	// Lista de viajes
 	List<Trip> listaViajes = new ArrayList<Trip>();
 
-	// (1) Comprobar que el usuario es valido
-	if (user != null && user.getStatus().equals(UserStatus.ACTIVE)) {
+	// (1) Obtener los datos actualizados del usuario
+	User usuario = Factories.persistence.newUserDao()
+		.findById(user.getId());
 
-	    // (2) Realizar la busqueda
+	// (2) Comprobar que el usuario es valido
+	if (usuario != null && usuario.getStatus().equals(UserStatus.ACTIVE)) {
+
+	    // (3) Realizar la busqueda
 	    try {
 		listaViajes = Factories.persistence.newTripDao()
-			.findByPromoterId(user.getId());
-		
+			.findByPromoterId(usuario.getId());
+
 		return listaViajes;
 	    }
 
 	    catch (Exception excep) {
-		throw new Exception("Error al buscar los viajes");
+		throw new Exception(ERROR);
 	    }
 	}
 
 	else {
-	    throw new Exception("Usuario invalido");
+	    throw new Exception(USUARIO_INVALIDO);
 	}
     }
 }
