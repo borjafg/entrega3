@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+	<hornetq-server>
+		<jms-destinations>
+			<jms-queue name="UnioviAuditQueue">
+				<entry name="queue/UnioviAuditQueue" />
+				<entry name="java:jboss/exported/jms/queue/UnioviAuditQueue" />
+				<durable>true</durable>
+			</jms-queue>
+			<jms-queue name="NotaneitorAcademicQueue">
+				<entry name="queue/NotaneitorAcademicQueue" />
+				<entry name="java:jboss/exported/jms/queue/NotaneitorAcademicQueue" />
+				<durable>true</durable>
+			</jms-queue>
+		</jms-destinations>
+	</hornetq-server>
+</messaging-deployment>
