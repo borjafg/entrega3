@@ -14,15 +14,15 @@ public class Consumer {
     private static final String CORREO_TOPIC = "jms/topic/MensajeriaCorreo";
     private Connection con;
 
-    public Consumer() throws JMSException {
-	run();
+    public Consumer(String idViaje) throws JMSException {
+	run(idViaje);
     }
 
-    private void run() throws JMSException {
-	initialize();
+    private void run(String idViaje) throws JMSException {
+	initialize(idViaje);
     }
 
-    private void initialize() throws JMSException {
+    private void initialize(idViaje) throws JMSException {
 	// ===================================
 	// Crear conexion e iniciar una sesion
 	// ===================================
