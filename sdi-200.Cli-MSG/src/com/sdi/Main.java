@@ -5,6 +5,7 @@ import javax.jms.MapMessage;
 
 import com.sdi.client.Consumer;
 import com.sdi.client.Producer;
+import com.sdi.client.TripInfo;
 import com.sdi.ui.Console;
 
 public class Main {
@@ -13,6 +14,8 @@ public class Main {
     }
 
     private String usuario;
+    private TripInfo viaje;
+    
     private Consumer consumer;
     private Producer producer;
 
@@ -43,6 +46,7 @@ public class Main {
     }
 
     private void getLoginUsuario() {
+	usuario = Console.readString("Nombre de usuario");
 	usuario = Console.readString("Nombre de usuario");
     }
 
