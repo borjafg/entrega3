@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{settings.locale}">
+	<h:head>
+		<title>#{msgs.tituloHead}</title>
+	</h:head>
+	<h:body>
+		<ui:include src="/snippets/menuOpciones_registrado.xhtml" />
+
+		<h:form id="form">
+			<p:dataTable id="tablePassengers" value="#{passengersList.pasajeros}"
+				var="passenger" filteredValue="#{passengersList.pasajerosFiltrados}"
+				rows="#{passengersList.filasPagina}" rowKey="#{passenger.id}"
+				sortMode="multiple" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+				<f:facet name="header">
+					<h2>#{msgs.passengersList_title}</h2>
+
+					<h:outputText value="#{msgs.passengersList_numberPages_label}" />
+					<p:spacer width="15px" height="1px" />
+
+					<p:inputText value="#{passengersList.filasPagina}" />
+					<p:spacer width="15px" height="1px" />
+
+					<p:commandButton value="#{msgs.passengersList_numberPages_button}"
+						update="form" />
+				</f:facet>
+
+				<p:column headerText="#{msgs.passengersList_Info_column}"
+					sortBy="#{passengersList.getInfoPasajero(passenger)}"
+					filterBy="#{passengersList.getInfoPasajero(passenger)}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{passengersList.getInfoPasajero(passenger)}" />
+				</p:column>
+			</p:dataTable>
+
+
+			<p:commandButton value="#{msgs.passengersList_back_button}"
+				style="clear:both; float: lef; margin:20px 10px 20px 15px;"
+				action="volver"/>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
