@@ -14,6 +14,9 @@ public class Consumer {
     private static final String CORREO_TOPIC = "jms/topic/MensajeriaCorreo";
     private Connection con;
 
+    private static final String USER = "sdi";
+    private static final String PASSWORD = "password";
+
     public Consumer(String idViaje) throws JMSException {
 	run(idViaje);
     }
@@ -30,7 +33,7 @@ public class Consumer {
 	ConnectionFactory factory = Jndi
 		.getConnectionFactory(JMS_CONNECTION_FACTORY);
 
-	con = factory.createConnection("sdi", "password");
+	con = factory.createConnection(USER, PASSWORD);
 	Session session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
 	// ============================
@@ -38,10 +41,15 @@ public class Consumer {
 	// ============================
 
 	Destination topic = Jndi.getDestination(CORREO_TOPIC);
+
 	MessageConsumer consumer = session.createConsumer(topic, "idViaje = '"
 		+ idViaje + "'"); // Filtrar por viaje
 
 	consumer.setMessageListener(new MessageListener());
+
+	// ==================
+	// Empezar a consumir
+	// ==================
 
 	con.start();
     }
