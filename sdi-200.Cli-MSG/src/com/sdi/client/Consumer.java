@@ -22,7 +22,7 @@ public class Consumer {
 	initialize(idViaje);
     }
 
-    private void initialize(idViaje) throws JMSException {
+    private void initialize(String idViaje) throws JMSException {
 	// ===================================
 	// Crear conexion e iniciar una sesion
 	// ===================================
@@ -38,8 +38,9 @@ public class Consumer {
 	// ============================
 
 	Destination topic = Jndi.getDestination(CORREO_TOPIC);
-	MessageConsumer consumer = session.createConsumer(topic, "idViaje = ''");
-	
+	MessageConsumer consumer = session.createConsumer(topic, "idViaje = '"
+		+ idViaje + "'"); // Filtrar por viaje
+
 	consumer.setMessageListener(new MessageListener());
 
 	con.start();
