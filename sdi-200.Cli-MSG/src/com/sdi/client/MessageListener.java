@@ -27,8 +27,10 @@ public class MessageListener implements javax.jms.MessageListener {
 
     private void process(Message msg) throws JMSException {
 	MapMessage m = (MapMessage) msg;
-	String usuario = m.getString("id");
-	String cuerpo = m.getString("cuerpo");
+	
+	String usuario = m.getString("from");
+	String cuerpo = m.getString("message");
+	
 	System.out.println(usuario + ": " + cuerpo);
     }
 }
