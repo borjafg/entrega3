@@ -21,6 +21,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/sdi-200EJB"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sdi-200.EJB"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

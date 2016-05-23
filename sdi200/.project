@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>sdi200</name>
+	<name>sdi-200</name>
 	<comment></comment>
 	<projects>
-		<project>sdi-200Web</project>
-		<project>sdi-200EJB</project>
+		<project>sdi-200.EJB</project>
+		<project>sdi-200.Web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -103,4 +103,5 @@ public interface ApplicationService {
      */
     public void excludeUserFromTrip(Long idPromotor, Application application)
 	    throws Exception;
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import uo.sdi.business.UserService;
 import uo.sdi.infrastructure.Factories;
-import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 
 public class UsuarioServicesRestImp implements UsuarioServicesRest {

@@ -1,11 +1,7 @@
 package com.sdi;
 
 import javax.jms.JMSException;
-import javax.jms.MapMessage;
 
-import com.sdi.client.Consumer;
-import com.sdi.client.Producer;
-import com.sdi.client.TripInfo;
 import com.sdi.ui.Console;
 
 public class Main {
@@ -69,7 +65,7 @@ public class Main {
 	    if (msg.equals("cancelar")) {
 		break;
 	    }
-	    
+
 	    acciones.enviarMensaje(msg);
 	    break;
 
@@ -140,7 +136,7 @@ public class Main {
 
 	return idViaje;
     }
-    
+
     /**
      * Muestra al usuario una lista de acciones que puede realizar.
      * 

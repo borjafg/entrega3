@@ -14,11 +14,12 @@
 		<ui:include src="/snippets/menuOpciones_publico.xhtml" />
 		<h1>#{msgs.login_title}</h1>
 
-		<h:form>
+		<h:form id="form-principal" method="post" action="security_check"
+			styleClass="form-signin" style="">
 			<h:panelGrid id="grid" columns="3" cellpadding="5">
 				<p:outputLabel for="userName" value="#{msgs.login_name_label}: " />
-				<p:inputText id="userName" value="#{login.userName}"
-					required="true" requiredMessage="#{msgs.loginError_userRequired}" />
+				<p:inputText id="userName" value="#{login.userName}" required="true"
+					requiredMessage="#{msgs.loginError_userRequired}" />
 				<p:message for="userName" />
 
 
@@ -30,7 +31,8 @@
 
 				<p:commandButton id="loginButton" value="#{msgs.login_send_button}"
 					action="#{login.validar}" update="grid" />
-				<p:message for="loginButton" showDetail="true" autoUpdate="true" closable="true" />
+				<p:message for="loginButton" showDetail="true" autoUpdate="true"
+					closable="true" />
 			</h:panelGrid>
 		</h:form>
 	</h:body>

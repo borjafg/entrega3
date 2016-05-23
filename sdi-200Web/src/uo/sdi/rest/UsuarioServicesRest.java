@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 
 @Path("/UsuarioServiceRs")
