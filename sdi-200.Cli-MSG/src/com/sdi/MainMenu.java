@@ -2,8 +2,6 @@ package com.sdi;
 
 import javax.jms.JMSException;
 
-import com.sdi.model.MessagingClient;
-
 import alb.util.console.Console;
 import alb.util.menu.BaseMenu;
 

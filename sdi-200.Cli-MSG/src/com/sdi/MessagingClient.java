@@ -1,4 +1,4 @@
-package com.sdi.model;
+package com.sdi;
 
 import java.util.Date;
 
