@@ -23,8 +23,7 @@ public class ActionsProcessor {
     private String usuario;
     private TripInfo viaje = null;
 
-    private Consumer consumer;
-    private Producer producer;
+    
 
     /**
      * Pide al usuario un usuario y una contraseña y las valida.
@@ -63,39 +62,5 @@ public class ActionsProcessor {
 	return salir;
     }
 
-    /**
-     * Crea un mensaje sobre un viaje y lo envia a todos los participantes de
-     * ese viaje.
-     * 
-     * @param msg
-     *            mensaje que se pretende enviar
-     * 
-     * @throws JMSException
-     *             Ha habido un error al crear o enviar el mensaje
-     * 
-     */
-    public void enviarMensaje(String msg) throws JMSException {
-	MapMessage m = producer.createMapMessage();
-
-	m.setString("id", usuario);
-	m.setString("cuerpo", msg);
-    }
-
-    /**
-     * Se encarga de dejar al consumidor y al productor de mensajes en un estado
-     * apropiado antesde cerrar la aplicacion.
-     * 
-     * @throws JMSException
-     *             Ha ocurrido un error al cerrar el sistema de mensajeria
-     * 
-     */
-    public void close() throws JMSException {
-	if (producer != null) {
-	    producer.close();
-	}
-
-	if (consumer != null) {
-	    consumer.close();
-	}
-    }
+    
 }

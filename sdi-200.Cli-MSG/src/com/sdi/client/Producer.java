@@ -48,9 +48,9 @@ public class Producer {
 	Destination topic = Jndi.getDestination(CORREO_TOPIC);
 	sender = session.createProducer(topic);
 
-	// ==================
-	// Empezar a consumir
-	// ==================
+	// =======
+	// Iniciar
+	// =======
 
 	con.start();
     }
