@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{settings.locale}">
+	<h:head>
+		<title>#{msgs.tituloHead}</title>
+	</h:head>
+	<h:body>
+		<ui:include src="/snippets/menuOpciones_publico.xhtml" />
+		<h1>#{msgs.login_title}</h1>
+
+		<h:form id="form-principal" method="post" action="security_check"
+			styleClass="form-signin" style="">
+			<h:panelGrid id="grid" columns="3" cellpadding="5">
+				<p:outputLabel for="userName" value="#{msgs.login_name_label}: " />
+				<p:inputText id="userName" value="#{login.userName}" required="true"
+					requiredMessage="#{msgs.loginError_userRequired}" />
+				<p:message for="userName" />
+
+
+				<p:outputLabel for="password" value="#{msgs.login_password_label}: " />
+				<p:password id="password" value="#{login.password}" required="true"
+					requiredMessage="#{msgs.loginError_passwordRequired}" />
+				<p:message for="password" />
+
+
+				<p:commandButton id="loginButton" value="#{msgs.login_send_button}"
+					action="#{login.validar}" update="grid" />
+				<p:message for="loginButton" showDetail="true" autoUpdate="true"
+					closable="true" />
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
