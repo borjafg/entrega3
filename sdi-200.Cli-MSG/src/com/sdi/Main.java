@@ -60,7 +60,7 @@ public class Main {
 	switch (entrada) {
 
 	case "ayuda":
-	    acciones.mostrarAyuda();
+	    mostrarAyuda();
 	    break;
 
 	case "msg":
@@ -139,5 +139,21 @@ public class Main {
 	}
 
 	return idViaje;
+    }
+    
+    /**
+     * Muestra al usuario una lista de acciones que puede realizar.
+     * 
+     */
+    public void mostrarAyuda() {
+	Console.println("---------");
+	Console.println("Acciones a realizar. Escriba solo el comando");
+	Console.println("Despues se le pediran los datos apropiados (por "
+		+ "ejemplo, el mensaje a enviar)");
+	Console.println();
+	Console.println("Enviar un mensaje a los participantes del viaje --> msg");
+	Console.println("Enviar y recibir mensajes sobre otro viaje --> change");
+	Console.println("Salir del programa --> salir");
+	Console.println("---------");
     }
 }

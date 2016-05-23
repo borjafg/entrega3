@@ -64,22 +64,6 @@ public class ActionsProcessor {
     }
 
     /**
-     * Muestra al usuario una lista de acciones que puede realizar.
-     * 
-     */
-    public void mostrarAyuda() {
-	Console.println("---------");
-	Console.println("Acciones a realizar. Escriba solo el comando");
-	Console.println("Despues de hacerlo se le pediran los datos apropiados "
-		+ "(por ejemplo, el mensaje a enviar)");
-	Console.println();
-	Console.println("Enviar un mensaje a los participantes del viaje --> msg");
-	Console.println("Enviar y recibir mensajes sobre otro viaje --> change");
-	Console.println("Salir del programa --> salir");
-	Console.println("---------");
-    }
-
-    /**
      * Crea un mensaje sobre un viaje y lo envia a todos los participantes de
      * ese viaje.
      * 
