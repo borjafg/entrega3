@@ -9,59 +9,135 @@ import com.sdi.client.TripInfo;
 import com.sdi.ui.Console;
 
 public class Main {
+    private ActionsProcessor acciones;
+
     public static void main(String[] args) throws JMSException {
 	new Main().run();
     }
 
-    private String usuario;
-    private TripInfo viaje;
-    
-    private Consumer consumer;
-    private Producer producer;
-
     private void run() throws JMSException {
-	initialize();
-	getLoginUsuario();
-	getMessages();
-    }
-
-    private void getMessages() throws JMSException {
-
 	try {
-	    while (true) {
-		String msg = Console.readString("--> ");
-		MapMessage mapmsg = createMessage(msg);
-		producer.send(mapmsg);
+	    acciones = new ActionsProcessor();
+
+	    boolean salir = acciones.login();
+
+	    // TODO Primero elegir el viaje del que recibir y enviar mensajes
+	    //
+	    // =====================
+
+	    Console.println();
+	    Console.println("Ver las acciones disponibles --> ayuda");
+	    Console.println();
+
+	    while (!salir) {
+		String entrada = Console.readString("--> ");
+
+		evaluar(entrada);
 	    }
 	}
-	
+
 	catch (Exception e) {
 	    System.out.println(e.getLocalizedMessage());
 	}
-	
+
 	finally {
-	    consumer.close();
-	    producer.close();
+	    acciones.close();
 	}
     }
 
-    private void getLoginUsuario() {
-	usuario = Console.readString("Nombre de usuario");
-	usuario = Console.readString("Nombre de usuario");
+    /**
+     * Toma un texto que escribio el usuario en la consola y ejecuta la accion
+     * asociada a él, o muestra un mensaje en la consola si no se corresponde
+     * con ninguna accion.
+     * 
+     * @param entrada
+     *            entrada proporcionada por el usuario
+     * 
+     * @throws JMSException
+     * 
+     */
+    private void evaluar(String entrada) throws JMSException {
+	switch (entrada) {
+
+	case "ayuda":
+	    acciones.mostrarAyuda();
+	    break;
+
+	case "msg":
+	    String msg = pedirMensaje();
+
+	    if (msg.equals("cancelar")) {
+		break;
+	    }
+	    
+	    acciones.enviarMensaje(msg);
+	    break;
+
+	case "change":
+	    Long idViaje = pedirIdViaje();
+
+	    if (idViaje.equals(new Long(-1))) {
+		break;
+	    }
+
+	    // TODO Cambiar el viaje del que recibir y enviar mensajes
+	    break;
+
+	default: // entrada desconocida
+	    break;
+	}
     }
 
-    private void initialize() throws JMSException {
-	consumer = new Consumer(usuario);
-	producer = new Producer();
+    /**
+     * Pide al usuario que escriba el mensaje que quiere enviar a todos los
+     * participantes del viaje que selecciono.
+     * 
+     * @return mensaje a enviar, 'cancelar' si no quiere enviar ningun mensaje
+     * 
+     */
+    private String pedirMensaje() {
+	boolean mensajeValido = false;
+	String mensaje = "";
+
+	while (!mensajeValido) {
+	    Console.println("Para no enviar ningun mensaje escriba \'cancelar\'");
+	    mensaje = Console.readString("Mensaje a enviar");
+
+	    if (mensaje != null && !mensaje.equals("")) {
+		mensajeValido = true;
+	    }
+	}
+
+	return mensaje;
     }
 
-    private MapMessage createMessage(String msg) throws JMSException {
+    /**
+     * Pide al usuario que escriba el mensaje que quiere enviar a todos los
+     * participantes del viaje que selecciono.
+     * 
+     * @return mensaje a enviar, 'cancelar' si no quiere enviar ningun mensaje
+     * 
+     */
+    private Long pedirIdViaje() {
+	Long idViaje = null;
 
-	MapMessage m = producer.createMapMessage();
-	
-	m.setString("id", usuario);
-	m.setString("cuerpo", msg);
-	
-	return m;
+	/*
+	 * Mostrar una lista de ids de viajes en los que el usuario participa
+	 */
+
+	while (idViaje == null) {
+	    Console.println("Para no cambiar de viaje escriba \'-1'");
+	    idViaje = Console.readLong("Id del viaje");
+
+	    if (idViaje == -1) {
+		return new Long(-1);
+	    }
+
+	    if (idViaje == null /* || idViaje no esta en la lista de IDs */) {
+		idViaje = null; // El id no es valido
+	    }
+	}
+
+	return idViaje;
     }
 }
