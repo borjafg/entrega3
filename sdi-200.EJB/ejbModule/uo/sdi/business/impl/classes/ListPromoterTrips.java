@@ -12,12 +12,11 @@ public class ListPromoterTrips {
     private final String USUARIO_INVALIDO = "El usuario no es valido";
     private final String ERROR = "Error al buscar los viajes";
 
-    public List<Trip> getTrips(User user) throws Exception {
+    public List<Trip> getTrips(Long idUser) throws Exception {
 	List<Trip> listaViajes = new ArrayList<Trip>();
 
 	// (1) Obtener los datos actualizados del usuario
-	User usuario = Factories.persistence.newUserDao()
-		.findById(user.getId());
+	User usuario = Factories.persistence.newUserDao().findById(idUser);
 
 	// (2) Comprobar que el usuario es valido
 	if (usuario != null && usuario.getStatus().equals(UserStatus.ACTIVE)) {

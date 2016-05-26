@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 
 import uo.sdi.business.impl.classes.DesUsuario;
-import uo.sdi.business.impl.classes.FindAllUsers;
+import uo.sdi.business.impl.classes.FindAll_Users;
 import uo.sdi.business.impl.classes.FindPassengers;
 import uo.sdi.business.impl.classes.GetInfoUser;
 import uo.sdi.business.impl.classes.GetUserByLogin;
@@ -29,7 +29,7 @@ public class EjbUserService implements LocalUserService, RemoteUserService {
 
     @Override
     public List<User> getUsers() {
-	return new FindAllUsers().findAll();
+	return new FindAll_Users().findAll();
     }
 
     @Override

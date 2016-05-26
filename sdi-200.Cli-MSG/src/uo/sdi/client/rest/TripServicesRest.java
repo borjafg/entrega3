@@ -1,4 +1,4 @@
-package uo.sdi.rest;
+package uo.sdi.client.rest;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public interface TripServicesRest {
     @GET
     @Path("/findById/{promoter_id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    List<Trip> getViajesUsuario(@PathParam("promoted_id") Long id) throws Exception;
-    
+    List<Trip> getViajesUsuario(@PathParam("promoted_id") Long id);
+
     @GET
     @Path("/findTripsUser/{user_id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

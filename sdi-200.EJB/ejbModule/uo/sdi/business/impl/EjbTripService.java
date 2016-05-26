@@ -10,6 +10,7 @@ import uo.sdi.business.impl.classes.GetInfoTrip;
 import uo.sdi.business.impl.classes.ListActiveTrips;
 import uo.sdi.business.impl.classes.ListPromoterTrips;
 import uo.sdi.business.impl.classes.SaveTrip;
+import uo.sdi.business.impl.classes.FindAll_Trips;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 
@@ -28,17 +29,12 @@ public class EjbTripService implements LocalTripService, RemoteTripService {
 
     @Override
     public List<Trip> findAll() {
-	return new TripFind().findAll();
+	return new FindAll_Trips().findAll();
     }
 
     @Override
-    public List<Trip> findById(Long id) {
-	return new TripFindById().findById(id);
-    }
-
-    @Override
-    public List<Trip> getPromoterTrips(User user) throws Exception {
-	return new ListPromoterTrips().getTrips(user);
+    public List<Trip> getPromoterTrips(Long idUser) throws Exception {
+	return new ListPromoterTrips().getTrips(idUser);
     }
 
     @Override
@@ -49,5 +45,10 @@ public class EjbTripService implements LocalTripService, RemoteTripService {
     @Override
     public Trip getInfoTrip(Long id) throws Exception {
 	return new GetInfoTrip().getInfo(id);
+    }
+
+    @Override
+    public List<Trip> findTripsUser(Long id) {
+	
     }
 }

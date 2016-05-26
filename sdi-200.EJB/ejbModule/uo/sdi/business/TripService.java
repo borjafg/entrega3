@@ -12,15 +12,16 @@ public interface TripService {
     /**
      * Busca una lista de viajes en los que un usuario es promotor.
      * 
-     * @param user
-     *            datos del usuario promotor de los viajes
+     * @param idUser
+     *            identificar del usuario promotor de los viajes
+     *            
      * @return lista de viajes en los que es promotor
      * 
      * @throws Exception
      *             ha ocurrido un error al buscar los viajes
      * 
      */
-    public List<Trip> getPromoterTrips(User user) throws Exception;
+    public List<Trip> getPromoterTrips(Long idUser) throws Exception;
 
     public void save(Trip trip) throws Exception;
 
@@ -39,7 +40,11 @@ public interface TripService {
      */
     public Trip getInfoTrip(Long id) throws Exception;
 
-    List<Trip> findAll();
+    /* ====================== */
+    /* ======== REST ======== */
+    /* ====================== */
 
-    List<Trip> findById(Long id);
+    public List<Trip> findAll();
+
+    public List<Trip> findTripsUser(Long id);
 }
