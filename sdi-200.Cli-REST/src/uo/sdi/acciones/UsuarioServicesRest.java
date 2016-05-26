@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import uo.sdi.modelo.User;
+import uo.sdi.model.User;
 
 @Path("/UsuarioServiceRs")
 public interface UsuarioServicesRest {

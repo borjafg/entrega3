@@ -1,4 +1,4 @@
-package uo.sdi.modelo;
+package uo.sdi.model;
 
 
 public enum TripStatus

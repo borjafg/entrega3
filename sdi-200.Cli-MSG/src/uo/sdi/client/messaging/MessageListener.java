@@ -1,4 +1,4 @@
-package com.sdi.client;
+package uo.sdi.client.messaging;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

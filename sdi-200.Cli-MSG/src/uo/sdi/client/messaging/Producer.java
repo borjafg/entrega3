@@ -1,4 +1,4 @@
-package com.sdi.client;
+package uo.sdi.client.messaging;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -8,7 +8,7 @@ import javax.jms.MapMessage;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 
-import com.sdi.client.util.Jndi;
+import uo.sdi.client.util.Jndi;
 
 public class Producer {
     private static final String JMS_CONNECTION_FACTORY = "jms/RemoteConnectionFactory";

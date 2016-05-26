@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
-import uo.sdi.modelo.Trip;
-import uo.sdi.modelo.TripStatus;
-import uo.sdi.modelo.User;
+import uo.sdi.model.Trip;
+import uo.sdi.model.TripStatus;
+import uo.sdi.model.User;
 import uo.sdi.util.Authenticator;
 import alb.util.console.Console;
 import alb.util.menu.Action;

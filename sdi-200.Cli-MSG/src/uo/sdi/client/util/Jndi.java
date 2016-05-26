@@ -1,4 +1,4 @@
-package com.sdi.client.util;
+package uo.sdi.client.util;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;

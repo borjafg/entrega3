@@ -1,12 +1,12 @@
-package com.sdi;
+package uo.sdi.client;
 
 import java.util.Date;
 
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 
-import com.sdi.client.Consumer;
-import com.sdi.client.Producer;
+import uo.sdi.client.messaging.Consumer;
+import uo.sdi.client.messaging.Producer;
 
 public class MessagingClient {
     private Consumer consumer;

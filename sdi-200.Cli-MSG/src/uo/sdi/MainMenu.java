@@ -1,7 +1,8 @@
-package com.sdi;
+package uo.sdi;
 
 import javax.jms.JMSException;
 
+import uo.sdi.client.MessagingClient;
 import alb.util.console.Console;
 import alb.util.menu.BaseMenu;
 
