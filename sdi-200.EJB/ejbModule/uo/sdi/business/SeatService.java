@@ -6,6 +6,5 @@ import uo.sdi.model.Seat;
 
 public interface SeatService {
 
-    List<Seat> findById(Long id);
-
+    public List<Seat> findBy_userId(Long id) throws Exception;
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-import uo.sdi.business.impl.classes.FindSeatsById;
+import uo.sdi.business.impl.classes.FindSeatsBy_userId;
 import uo.sdi.model.Seat;
 
 @Stateless
@@ -13,8 +13,8 @@ import uo.sdi.model.Seat;
 public class EjbSeatService implements LocalSeatService, RemoteSeatService {
 
     @Override
-    public List<Seat> findById(Long id) {
-	return new FindSeatsById().findById(id);
+    public List<Seat> findBy_userId(Long id) throws Exception {
+	return new FindSeatsBy_userId().find(id);
     }
 
 }

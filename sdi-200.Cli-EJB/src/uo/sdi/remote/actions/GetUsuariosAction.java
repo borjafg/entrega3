@@ -40,10 +40,10 @@ public class GetUsuariosAction implements Action {
 	return ts.getPromoterTrips(id);
     }
 
-    private List<Seat> listSeatsUser(Long id) {
+    private List<Seat> listSeatsUser(Long id) throws Exception {
 	SeatService ss = new RemoteEjbServiceLocator().getSeatService();
 	
-	return ss.findById(id);
+	return ss.findBy_userId(id);
     }
 
     private void printLine(User u) throws Exception {
@@ -63,7 +63,7 @@ public class GetUsuariosAction implements Action {
 
     }
 
-    private int numeroViajesParticipo(Long id) {
+    private int numeroViajesParticipo(Long id) throws Exception {
 	return listSeatsUser(id).size();
     }
 

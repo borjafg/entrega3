@@ -6,13 +6,12 @@ import uo.sdi.model.Application;
 
 public class ApplicationServicesRestImp implements ApplicationServicesRest {
     ApplicationService service = Factories.services.getApplicationService();
+
     @Override
-    public void confirmarPasajeros(Long idUser, Application application) {
-	try {
-	    service.acceptApplication(idUser, application);
-	} catch (Exception e) {
-	    throw new RuntimeException(e);
-	}
+    public void confirmarPasajeros(Long idUser, Application application)
+	    throws Exception {
+	
+	service.acceptApplication(idUser, application);
     }
 
 }
