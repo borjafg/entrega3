@@ -1,8 +1,6 @@
 package uo.sdi.model;
 
-
-public enum SeatStatus
-{
-	ACCEPTED,
-	EXCLUDED
+public enum SeatStatus {
+    ACCEPTED,
+    EXCLUDED
 }

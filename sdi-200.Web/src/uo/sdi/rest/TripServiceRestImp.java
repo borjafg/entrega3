@@ -10,7 +10,7 @@ public class TripServiceRestImp implements TripServicesRest {
     TripService service = Factories.services.getTripService();
 
     @Override
-    public List<Trip> getViajes() {
+    public List<Trip> getViajes() throws Exception {
 	return service.findAll();
     }
 
@@ -20,7 +20,7 @@ public class TripServiceRestImp implements TripServicesRest {
     }
 
     @Override
-    public List<Trip> getViajesParticipaUsuario(Long id) {
+    public List<Trip> getViajesParticipaUsuario(Long id) throws Exception {
 	return service.findTripsUser(id);
     }
 }

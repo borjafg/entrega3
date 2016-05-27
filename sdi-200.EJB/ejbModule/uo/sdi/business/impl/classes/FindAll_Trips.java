@@ -7,8 +7,13 @@ import uo.sdi.model.Trip;
 
 public class FindAll_Trips {
 
-    public List<Trip> findAll() {
-	return Factories.persistence.newTripDao().findAll(); //- \ /
-	// TODO Arreglar esta chapuza sin control de excepciones o_o
+    public List<Trip> findAll() throws Exception {
+	try {
+	    return Factories.persistence.newTripDao().findAll();
+	}
+
+	catch (Exception excep) {
+	    
+	}
     }
 }

@@ -4,8 +4,13 @@ import uo.sdi.infrastructure.Factories;
 
 public class DesUsuario {
 
-    public void desactivar(String login) {
-	Factories.persistence.newUserDao().desactivate(login);
-    }
+    public void desactivar(String login) throws Exception {
+	try {
+	    Factories.persistence.newUserDao().desactivate(login);
+	}
 
+	catch (Exception excep) {
+	    g
+	}
+    }
 }

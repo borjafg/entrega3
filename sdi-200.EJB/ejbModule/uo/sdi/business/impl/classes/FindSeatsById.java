@@ -7,9 +7,16 @@ import uo.sdi.model.Seat;
 
 public class FindSeatsById {
 
-    public List<Seat> findById(Long id) {
-	List<Seat> seatList = Factories.persistence.newSeatDao().findByUser(id);
-	return seatList;
-    }
+    public List<Seat> findById(Long id) throws Exception {
+	try {
+	    List<Seat> seatList = Factories.persistence.newSeatDao()
+		    .findByUser(id);
 
+	    return seatList;
+	}
+
+	catch (Exception excep) {
+
+	}
+    }
 }

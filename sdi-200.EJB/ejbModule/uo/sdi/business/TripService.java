@@ -44,7 +44,7 @@ public interface TripService {
     /* ======== REST ======== */
     /* ====================== */
 
-    public List<Trip> findAll();
+    public List<Trip> findAll() throws Exception;
 
-    public List<Trip> findTripsUser(Long id);
+    public List<Trip> findTripsUser(Long id) throws Exception;
 }
