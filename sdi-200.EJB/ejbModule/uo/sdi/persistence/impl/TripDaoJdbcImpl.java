@@ -141,9 +141,11 @@ public class TripDaoJdbcImpl implements TripDao {
 		"TRIP_FIND_ALL_USER_NO_PROMOTER_NO_APPLIED", new TripMapper(),
 		userId, userId);
     }
-    
+
     @Override
     public List<Trip> findAllTrips_User(Long userId) {
-	return jdbcTemplate.queryForList(queryKey, mapper, args);
+	return jdbcTemplate.queryForList(
+		"TRIP_FIND_ALL_USER_PROMOTER_OR_ACCEPTED", new TripMapper(),
+		userId, userId);
     }
 }
