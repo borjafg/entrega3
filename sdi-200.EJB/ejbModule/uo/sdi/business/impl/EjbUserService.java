@@ -28,7 +28,7 @@ public class EjbUserService implements LocalUserService, RemoteUserService {
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<User> getUsers() throws Exception {
 	return new FindAll_Users().findAll();
     }
 
@@ -38,13 +38,13 @@ public class EjbUserService implements LocalUserService, RemoteUserService {
     }
 
     @Override
-    public void desUsuario(String login) {
+    public void desUsuario(String login) throws Exception {
 	new DesUsuario().desactivar(login);
 	
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public User getUserByLogin(String login) throws Exception {
 	return new GetUserByLogin().getByLogin(login);
     }
 }

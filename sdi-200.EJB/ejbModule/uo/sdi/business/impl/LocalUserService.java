@@ -10,6 +10,5 @@ import uo.sdi.model.User;
 @Local
 public interface LocalUserService extends UserService {
 
-    List<User> getUsers();
-
+    public List<User> getUsers() throws Exception;
 }

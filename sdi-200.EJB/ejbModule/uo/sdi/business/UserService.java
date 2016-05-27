@@ -21,9 +21,9 @@ public interface UserService {
      */
     public Map<String, Object> getInfoUser(Long id) throws Exception;
 
-    public List<User> getUsers();
+    public List<User> getUsers() throws Exception;
 
-    public void desUsuario(String login);
+    public void desUsuario(String login) throws Exception;
 
-    public User getUserByLogin(String login);
+    public User getUserByLogin(String login) throws Exception;
 }

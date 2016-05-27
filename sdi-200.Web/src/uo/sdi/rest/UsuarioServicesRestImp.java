@@ -10,13 +10,13 @@ public class UsuarioServicesRestImp implements UsuarioServicesRest {
     UserService service = Factories.services.getUserService();
 
     @Override
-    public List<User> getUsuarios() {
+    public List<User> getUsuarios() throws Exception {
 	return service.getUsers();
     }
 
 
     @Override
-    public User getUserByLogin(String login) {
+    public User getUserByLogin(String login) throws Exception {
 	return service.getUserByLogin(login);
     }
 

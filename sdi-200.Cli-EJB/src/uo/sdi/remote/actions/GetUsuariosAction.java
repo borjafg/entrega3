@@ -28,7 +28,7 @@ public class GetUsuariosAction implements Action {
 	System.out.println("Lista usuarios:");
     }
 
-    private List<User> findAllUsers() {
+    private List<User> findAllUsers() throws Exception {
 	UserService service = new RemoteEjbServiceLocator().getUserService();
 	
 	return service.getUsers();
@@ -54,8 +54,10 @@ public class GetUsuariosAction implements Action {
 	sb.append(" Email: " + u.getEmail());
 	sb.append(" Login:" + u.getLogin());
 	sb.append(" Status: " + u.getStatus());
+	
 	sb.append(" Numero viajes promovidos: "
 		+ numeroViajesPromovidos(u.getId()));
+	
 	sb.append(" Numero viajes participo: "
 		+ numeroViajesParticipo(u.getId()));
 

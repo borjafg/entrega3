@@ -15,9 +15,10 @@ public interface UsuarioServicesRest {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    List<User> getUsuarios();
+    List<User> getUsuarios() throws Exception;
+    
     @GET
     @Path("/findById/{login}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    User getUserByLogin(@PathParam("login") String login);   
+    User getUserByLogin(@PathParam("login") String login) throws Exception;   
 }
