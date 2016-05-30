@@ -5,6 +5,7 @@ import java.util.List;
 import uo.sdi.ws.EjbSeatServiceService;
 import uo.sdi.ws.EjbTripServiceService;
 import uo.sdi.ws.EjbUserServiceService;
+import uo.sdi.ws.Exception_Exception;
 import uo.sdi.ws.Seat;
 import uo.sdi.ws.SeatService;
 import uo.sdi.ws.Trip;
@@ -28,22 +29,22 @@ public class GetUsuariosAction implements Action {
 	System.out.println("Lista usuarios:");
     }
 
-    private List<User> findAllUsers() {
+    private List<User> findAllUsers() throws Exception_Exception {
 	UserService service = new EjbUserServiceService().getUserServicePort();
 	return service.getUsers();
     }
 
-    private List<Trip> listadoViajes(Long id) {
+    private List<Trip> listadoViajesPromovidos(Long id) throws Exception_Exception {
 	TripService ts = new EjbTripServiceService().getTripServicePort();
-	return ts.findById(id);
+	return ts.getPromoterTrips(id);
     }
 
-    private List<Seat> listSeatsUser(Long id) {
+    private List<Seat> listSeatsUser(Long id) throws Exception_Exception {
 	SeatService ss = new EjbSeatServiceService().getSeatServicePort();
-	return ss.findById(id);
+	return ss.findByUserId(id);
     }
 
-    private void printLine(User u) {
+    private void printLine(User u) throws Exception_Exception {
 	StringBuilder sb = new StringBuilder();
 	sb.append(" Nombre: " + u.getName());
 	sb.append(" Apellido: " + u.getSurname());
@@ -56,12 +57,12 @@ public class GetUsuariosAction implements Action {
 
     }
 
-    private int numeroViajesParticipo(Long id) {
+    private int numeroViajesParticipo(Long id) throws Exception_Exception {
 	return listSeatsUser(id).size();
     }
 
-    private int numeroViajesPromovidos(Long id) {
-	return listadoViajes(id).size();
+    private int numeroViajesPromovidos(Long id) throws Exception_Exception {
+	return listadoViajesPromovidos(id).size();
     }
 
 }

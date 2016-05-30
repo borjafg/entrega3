@@ -3,6 +3,7 @@ package uo.sdi.remote.actions;
 import java.util.List;
 
 import uo.sdi.ws.EjbUserServiceService;
+import uo.sdi.ws.Exception_Exception;
 import uo.sdi.ws.User;
 import uo.sdi.ws.UserService;
 import alb.util.console.Console;
@@ -19,7 +20,7 @@ public class DesactivarUsuario implements Action{
 	System.out.println("usuario desactivado");
     }
 
-    private User findUser(Long id) {
+    private User findUser(Long id) throws Exception_Exception {
 	List<User> usuario = new EjbUserServiceService().getUserServicePort().getUsers();
 	for (User user : usuario) {
 	    if (user.getId().equals(id))

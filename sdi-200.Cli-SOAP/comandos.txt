@@ -1,0 +1,24 @@
+Para ejecutar los comandos hay que usar el archivo console.bat del proyecto y tener desplegado el proyecto.
+
+Comando para los aplication service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/ApplicationService?wsdl
+
+
+Comando para login service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/LoginService?wsdl
+
+
+Comando para rating service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/RatingService?wsdl
+
+Comando para seat service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/SeatService?wsdl
+
+
+Comando para trip service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/TripService?wsdl
+
+
+
+Comando para user service
+%JBOSS_HOME%\bin\wsconsume.bat -o .\generated-stubs -p uo.sdi.ws http://localhost:8280/sdi-200.EJB/UserService?wsdl
