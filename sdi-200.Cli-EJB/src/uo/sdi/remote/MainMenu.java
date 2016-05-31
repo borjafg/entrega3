@@ -13,8 +13,7 @@ public class MainMenu extends BaseMenu {
 		{ "Consultar usuarios del sistema", GetUsuariosAction.class },
 		{ "Desactivar usuarios", DesactivarUsuario.class },
 		{ "Borrar calificaciones", BorrarCalificaciones.class },
-		{ "Listar comentarios", ListarComentarios.class }
-		};
+		{ "Listar comentarios", ListarComentarios.class } };
     }
 
     public static void main(String[] args) {
