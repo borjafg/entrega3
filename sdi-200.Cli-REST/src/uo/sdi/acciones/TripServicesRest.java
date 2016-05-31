@@ -15,11 +15,11 @@ public interface TripServicesRest {
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    List<Trip> getViajes();
-    
+    List<Trip> getViajes() throws Exception;
+
     @GET
     @Path("/findById/{promoter_id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    List<Trip> getViajesUsuario(@PathParam("promoted_id")Long id);
-
+    List<Trip> getViajesUsuario(@PathParam("promoted_id") Long id)
+	    throws Exception;
 }

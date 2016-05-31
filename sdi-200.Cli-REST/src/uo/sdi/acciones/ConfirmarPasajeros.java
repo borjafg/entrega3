@@ -21,25 +21,32 @@ public class ConfirmarPasajeros implements Action {
     public void execute() throws Exception {
 	String user = Console.readString("Usuario");
 	String pass = Console.readString("Password");
+	
 	client = new ResteasyClientBuilder().build()
 		.register(new Authenticator(user, pass))
 		.target("http://localhost:8280/sdi-200Web/rest/")
 		.proxy(TripServicesRest.class);
+	
 	clientUser = new ResteasyClientBuilder().build()
 		.register(new Authenticator(user, pass))
 		.target("http://localhost:8280/sdi-200Web/rest/")
 		.proxy(UsuarioServicesRest.class);
+	
 	clientApp = new ResteasyClientBuilder().build()
 		.register(new Authenticator(user, pass))
 		.target("http://localhost:8280/sdi-200Web/rest/")
 		.proxy(ApplicationServicesRest.class);
+	
 	List<Trip> trips = client.getViajes();
 	User usuario = findUserByLogin(user);
 	List<Trip> tripsPromoted = listViajesPromovidos(trips, usuario.getId());
+	
 	printUser(usuario);
 	printTrip(tripsPromoted);
+	
 	Long idViaje = Console
 		.readLong("Inserte id viaje para confirmar pasajeros");
+	
 	for (Trip trip : tripsPromoted) {
 	    if(trip.getId().equals(idViaje))
 		System.out.println();
@@ -65,28 +72,30 @@ public class ConfirmarPasajeros implements Action {
 	}
     }
 
-    private User findUserByLogin(String login) {
+    private User findUserByLogin(String login) throws Exception {
 	return clientUser.getUserByLogin(login);
     }
 
     private List<Trip> listViajesPromovidos(List<Trip> viajes, Long idUsuario) {
 	List<Trip> viajesPromovidos = new ArrayList<>();
+	
 	for (Trip trip : viajes) {
 	    if (trip.getPromoterId().equals(idUsuario)
 		    && (trip.getStatus().equals(TripStatus.OPEN)))
 		viajesPromovidos.add(trip);
 	}
+	
 	return viajesPromovidos;
     }
 
     private void printTrip(Trip t) {
 	StringBuilder sb = new StringBuilder();
+	
 	sb.append("Id:" + t.getId());
 	sb.append(" Fecha de llegada:" + t.getArrivalDate());
 	sb.append(" Origen:" + t.getDeparture());
 	sb.append(" Comentarios: " + t.getComments());
+	
 	System.out.println(sb.toString());
-
     }
-
 }

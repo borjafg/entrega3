@@ -56,7 +56,7 @@ public class ListarViajesPromovidos implements Action {
 	}
     }
 
-    private User findUserByLogin(String login) {
+    private User findUserByLogin(String login) throws Exception {
 	return clientUser.getUserByLogin(login);
     }
 
