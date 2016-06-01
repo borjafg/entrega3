@@ -13,13 +13,18 @@ public class EjbLoginService implements LocalLoginService, RemoteLoginService {
     @Override
     public User verify(String login, String password) throws Exception {
 	User user = null;
+	
 	try {
 	    user = Factories.persistence.newUserDao().findByLogin(login);
-	} catch (Exception excep) {
+	}
+	
+	catch (Exception excep) {
 	    throw new Exception();
 	}
+	
 	if (!validLogin(user, password))
 	    return null;
+	
 	return user;
     }
 
@@ -27,6 +32,7 @@ public class EjbLoginService implements LocalLoginService, RemoteLoginService {
 	if (user == null) {
 	    return false;
 	}
+	
 	return user.getPassword().equals(password)
 		&& user.getStatus().equals(UserStatus.ACTIVE);
     }

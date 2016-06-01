@@ -3,6 +3,7 @@ package uo.sdi.actions;
 import javax.jms.JMSException;
 
 import uo.sdi.client.MessagingClient;
+import uo.sdi.client.RestClient;
 import alb.util.console.Console;
 
 public class CambiarViaje extends AbstratAction {
@@ -13,7 +14,8 @@ public class CambiarViaje extends AbstratAction {
 	Long idViaje = pedirIdViaje();
 
 	if (idViaje != -1) {
-	    clienteMensajeria.
+	    new RestClient().;
+	    
 	    clienteMensajeria.close();
 	}
 	
