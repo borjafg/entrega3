@@ -15,14 +15,14 @@ public class MessagingClient {
     private String login;
     private Long idViaje;
 
-    public void setLogin(String login) {
-	this.login = login;
-    }
-
     public void setIdViaje(Long idViaje) {
 	this.idViaje = idViaje;
     }
 
+    public void setLogin(String login) {
+	this.login = login;
+    }
+    
     /**
      * Inicializa un consumidor y un productor de mensajes para que el usuario
      * pueda enviar y recibir mensajes sobre un viaje.
@@ -41,7 +41,7 @@ public class MessagingClient {
 	// los mensajes de la cola para recibir solo los mensajes del viaje.
 	//
 	// El productor solo necesita saber el id del viaje en el momento de
-	// enviar un mensaje (y esta informacion esta en el mensaje)
+	// enviar un mensaje (esa informacion se adjunta al mensaje al crearlo)
 	//
 	closeConsumer();
 
@@ -71,6 +71,7 @@ public class MessagingClient {
 	message.setString("from", login);
 	message.setString("message", msg);
 	message.setLong("date", new Date().getTime());
+	message.setLong("idViaje", idViaje);
 
 	producer.send(message);
     }

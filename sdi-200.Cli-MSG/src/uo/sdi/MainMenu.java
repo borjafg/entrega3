@@ -3,7 +3,6 @@ package uo.sdi;
 import uo.sdi.actions.CambiarViaje;
 import uo.sdi.actions.EnviarMensaje;
 import uo.sdi.client.MessagingClient;
-import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import alb.util.console.Console;
 import alb.util.menu.BaseMenu;
@@ -12,13 +11,13 @@ public class MainMenu extends BaseMenu {
     private static MessagingClient clienteMensajeria;
     
     private static User user;
-    private static Trip viaje;
 
     public static void main(String[] args) throws Exception {
 	MainMenu main = new MainMenu();
 	
 	try{
 	    main.inicializar();
+	    
 	    main.run();
 	}
 	
@@ -49,6 +48,10 @@ public class MainMenu extends BaseMenu {
 	}
     }
 
+    public static void setClienteMensajeria(MessagingClient cliente) {
+	MainMenu.clienteMensajeria = cliente;
+    }
+    
     /**
      * Devuelve el cliente de mensajeria que utiliza la aplicacion para crear,
      * consumir y producir mensajes.
