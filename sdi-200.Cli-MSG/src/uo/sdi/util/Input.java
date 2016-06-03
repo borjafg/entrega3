@@ -13,6 +13,12 @@ import alb.util.console.Console;
  * 
  */
 public class Input {
+    public static final String NO_PARTICIPA_VIAJES = "El usuario no participa en"
+	    + " ningún viaje";
+    
+    public static final String SALIR = "salir";
+    
+
     /**
      * Pide al usuario que escriba una cadena de texto no vacia.
      * 
@@ -82,7 +88,7 @@ public class Input {
 		    .pedirString("Contraseña (Si desea salir escriba \"salir\")");
 
 	    if (usuario.equals("salir") || contraseña.equals("salir")) {
-		throw new Exception("salir");
+		throw new Exception(SALIR);
 	    }
 
 	    user = cliente.login(usuario, contraseña);
@@ -126,7 +132,7 @@ public class Input {
 	List<Trip> listaViajes = new RestClient().listarViajesUsuario(user);
 
 	if (listaViajes.size() <= 0) {
-	    throw new Exception("El usuario no participa en ningun viaje");
+	    throw new Exception(NO_PARTICIPA_VIAJES);
 	}
 
 	Console.println("Lista de viajes (usuario: " + user.getLogin() + ")");
@@ -150,7 +156,7 @@ public class Input {
 			    + "\"-1\")");
 
 	    if (id_viaje.equals(-1)) {
-		throw new Exception("salir");
+		throw new Exception(SALIR);
 	    }
 
 	    viaje = findTrip(listaViajes, id_viaje);
