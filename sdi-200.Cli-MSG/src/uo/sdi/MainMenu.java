@@ -3,33 +3,41 @@ package uo.sdi;
 import uo.sdi.actions.CambiarViaje;
 import uo.sdi.actions.EnviarMensaje;
 import uo.sdi.client.MessagingClient;
-import uo.sdi.model.User;
+import uo.sdi.util.menu.BaseMenu;
 import alb.util.console.Console;
-import alb.util.menu.BaseMenu;
 
 public class MainMenu extends BaseMenu {
-    private static MessagingClient clienteMensajeria;
-    
-    private static User user;
+    /**
+     * Cliente de mensajeria que utiliza la aplicacion para crear, producir y
+     * consumir mensajes.
+     */
+    private MessagingClient clienteMensajeria;
 
     public static void main(String[] args) throws Exception {
 	MainMenu main = new MainMenu();
-	
-	try{
+
+	try {
 	    main.inicializar();
-	    
+
 	    main.run();
 	}
-	
+
 	catch (Exception excep) {
-	    if(!excep.getMessage().equals("salir")) {
+	    if (!excep.getMessage().equals("salir")) {
 		Console.print(excep.getMessage());
 	    }
 	}
     }
 
+    /**
+     * Preparar la ejecución de la aplicación
+     * 
+     * @throws Exception
+     *             ha ocurrido un error o el usuario desea salir
+     * 
+     */
     private void inicializar() throws Exception {
-	new Init().run();
+	new Init().run(this);
     }
 
     private void run() throws Exception {
@@ -37,6 +45,8 @@ public class MainMenu extends BaseMenu {
 	    menuOptions = new Object[][] {
 		    { "Enviar un mensaje", EnviarMensaje.class },
 		    { "Cambiar viaje", CambiarViaje.class } };
+
+	    execute(clienteMensajeria);
 	}
 
 	catch (Exception e) {
@@ -48,26 +58,15 @@ public class MainMenu extends BaseMenu {
 	}
     }
 
-    public static void setClienteMensajeria(MessagingClient cliente) {
-	MainMenu.clienteMensajeria = cliente;
+    // =================
+    // Getters y Setters
+    // =================
+
+    public void setClienteMensajeria(MessagingClient cliente) {
+	clienteMensajeria = cliente;
     }
-    
-    /**
-     * Devuelve el cliente de mensajeria que utiliza la aplicacion para crear,
-     * consumir y producir mensajes.
-     * 
-     * @return cliente de mensajeria
-     * 
-     */
-    public static MessagingClient getClienteMensajeria() {
+
+    public MessagingClient getClienteMensajeria() {
 	return clienteMensajeria;
-    }
-    
-    public static void setUser(User user) {
-	MainMenu.user = user;
-    }
-    
-    public static User getUser() {
-	return user;
     }
 }

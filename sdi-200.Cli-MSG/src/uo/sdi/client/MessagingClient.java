@@ -7,21 +7,34 @@ import javax.jms.MapMessage;
 
 import uo.sdi.client.messaging.Consumer;
 import uo.sdi.client.messaging.Producer;
+import uo.sdi.model.Trip;
+import uo.sdi.model.User;
 
 public class MessagingClient {
     private Consumer consumer;
     private Producer producer;
     
-    private String login;
-    private Long idViaje;
-
-    public void setIdViaje(Long idViaje) {
-	this.idViaje = idViaje;
+    private Trip viaje;
+    private User user;
+    
+    public void setViaje(Trip viaje) {
+	this.viaje = viaje;
+    }
+    
+    public Trip getViaje() {
+	return viaje;
     }
 
-    public void setLogin(String login) {
-	this.login = login;
+    public void setUser(User user) {
+	this.user = user;
     }
+    
+    public User getUser() {
+	return user;
+    }
+    
+    //=================================
+    //=================================
     
     /**
      * Inicializa un consumidor y un productor de mensajes para que el usuario
@@ -34,7 +47,7 @@ public class MessagingClient {
      * @throws JMSException
      *             Ha ocurrido un error al iniciar el consumidor y el productor
      */
-    public void inicializar_Productor_Consumidor(Long idViaje)
+    public void inicializar_Productor_Consumidor(Trip viaje)
 	    throws JMSException {
 
 	// Sólo hace falta cerrar el consumidor, porque es el tiene que filtrar
@@ -45,13 +58,13 @@ public class MessagingClient {
 	//
 	closeConsumer();
 
-	consumer = new Consumer(idViaje.toString());
+	consumer = new Consumer(viaje.getId().toString());
 	
 	if(producer == null) {
 	    producer = new Producer();
 	}
 	
-	this.idViaje = idViaje;
+	this.viaje = viaje;
     }
 
     /**
@@ -68,10 +81,10 @@ public class MessagingClient {
     public void enviarMensaje(String msg) throws JMSException {
 	MapMessage message = producer.createMapMessage();
 
-	message.setString("from", login);
+	message.setString("from", user.getLogin());
 	message.setString("message", msg);
 	message.setLong("date", new Date().getTime());
-	message.setLong("idViaje", idViaje);
+	message.setLong("idViaje", viaje.getId());
 
 	producer.send(message);
     }

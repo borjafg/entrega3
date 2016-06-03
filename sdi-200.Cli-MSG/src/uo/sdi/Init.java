@@ -15,16 +15,15 @@ import uo.sdi.util.Input;
  * 
  */
 public class Init {
-    public void run() throws Exception {
+    public void run(MainMenu main) throws Exception {
 	User user = Input.login();
 	Trip viaje = Input.elegirViaje(user);
 
 	MessagingClient cliente = new MessagingClient();
 	
-	cliente.setLogin(user.getLogin());
-	cliente.inicializar_Productor_Consumidor(viaje.getId());
-
-	MainMenu.setUser(user);
-	MainMenu.setClienteMensajeria(cliente);
+	cliente.setUser(user);
+	cliente.inicializar_Productor_Consumidor(viaje);
+	
+	main.setClienteMensajeria(cliente);
     }
 }

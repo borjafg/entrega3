@@ -4,11 +4,12 @@ import javax.jms.JMSException;
 
 import alb.util.console.Console;
 import uo.sdi.client.MessagingClient;
+import uo.sdi.util.menu.Action;
 
-public class EnviarMensaje extends AbstratAction {
+public class EnviarMensaje implements Action {
 
     @Override
-    public void executeAction(MessagingClient clienteMensajeria)
+    public void execute(MessagingClient clienteMensajeria)
 	    throws JMSException {
 	// TODO Auto-generated method stub
 
