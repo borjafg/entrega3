@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+	<hornetq-server>
+		<jms-destinations>
+			<jms-queue name="MensajeriaLog">
+				<entry name="queue/MensajeriaLog" />
+				<entry name="java:jboss/exported/jms/queue/MensajeriaLog" />
+				<durable>true</durable>
+			</jms-queue>
+			<jms-topic name="MensajeriaViajes">
+				<entry name="topic/MensariaViajes" />
+				<entry name="java:jboss/exported/jms/topic/MensariaViajes" />
+			</jms-topic>
+		</jms-destinations>
+	</hornetq-server>
+</messaging-deployment>

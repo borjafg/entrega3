@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="sdi-200">
+    <wb-module deploy-name="sdi3-200">
         <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
-        <dependent-module archiveName="sdi-200.EJB.jar" deploy-path="/" handle="module:/resource/sdi-200.EJB/sdi-200.EJB">
+        <dependent-module archiveName="sdi3-200.EJB.jar" deploy-path="/" handle="module:/resource/sdi3-200.EJB/sdi3-200.EJB">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="sdi-200.Web.war" deploy-path="/" handle="module:/resource/sdi-200.Web/sdi-200.Web">
+        <dependent-module archiveName="sdi3-200.Web.war" deploy-path="/" handle="module:/resource/sdi3-200.Web/sdi3-200.Web">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
