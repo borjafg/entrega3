@@ -3,14 +3,33 @@
 <messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
 	<hornetq-server>
 		<jms-destinations>
-			<jms-queue name="MensajeriaLog">
-				<entry name="queue/MensajeriaLog" />
-				<entry name="java:jboss/exported/jms/queue/MensajeriaLog" />
+			<!-- ====================== -->
+			<!-- Mensajes no permitidos -->
+			<!-- ====================== -->
+
+			<jms-queue name="MensajesLog">
+				<entry name="queue/MensajesLog" />
+				<entry name="java:jboss/exported/jms/queue/MensajesLog" />
 				<durable>true</durable>
 			</jms-queue>
-			<jms-topic name="MensajeriaViajes">
-				<entry name="topic/MensariaViajes" />
-				<entry name="java:jboss/exported/jms/topic/MensariaViajes" />
+
+			<!-- ====================== -->
+			<!-- Mensajes no analizados -->
+			<!-- ====================== -->
+
+			<jms-queue name="MensajesProcesando">
+				<entry name="queue/MensajesProcesando" />
+				<entry name="java:jboss/exported/jms/queue/MensajesProcesando" />
+				<durable>true</durable>
+			</jms-queue>
+
+			<!-- ====================== -->
+			<!-- Mensajes ya examinados -->
+			<!-- ====================== -->
+
+			<jms-topic name="MensajesEnviados">
+				<entry name="topic/MensajesEnviados" />
+				<entry name="java:jboss/exported/jms/topic/MensajesEnviados" />
 			</jms-topic>
 		</jms-destinations>
 	</hornetq-server>
