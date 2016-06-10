@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<p:menubar id="mimenu">
+
+			<p:menuitem id="linkListTrips" value="#{msgs.menu_listTrips}"
+				action="listTrips" />
+
+
+			<p:submenu style="float:right" label="#{msgs.textoIdioma}"
+				icon="ui-icon-wrench">
+
+				<p:menuitem id="linkespa" value="#{msgs.enlaceIdiomaES}"
+					actionListener="#{settings.setSpanish}" update="@all" />
+
+				<p:separator />
+
+				<p:menuitem id="linkingles" value="#{msgs.enlaceIdiomaEN}"
+					actionListener="#{settings.setEnglish}" update="@all" />
+			</p:submenu>
+
+		</p:menubar>
+	</h:form>
+</ui:composition>
