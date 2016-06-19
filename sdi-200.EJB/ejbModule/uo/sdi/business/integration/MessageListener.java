@@ -1,4 +1,4 @@
-package uo.sdi.business.integration;
+/*package uo.sdi.business.integration;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -143,4 +143,4 @@ public class MessageListener implements javax.jms.MessageListener {
     public void guardarMensaje_Log(Message mensaje) {
 	
     }
-}
+}*/

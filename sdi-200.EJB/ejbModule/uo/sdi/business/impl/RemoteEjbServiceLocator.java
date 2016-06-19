@@ -12,23 +12,28 @@ import uo.sdi.business.TripService;
 import uo.sdi.business.UserService;
 
 public class RemoteEjbServiceLocator implements ServicesFactory {
-    private static final String APPLICATION_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbApplicationService!"
+    private static final String APPLICATION_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbApplicationService!"
 	    + "uo.sdi.business.impl.RemoteApplicationService";
-    private static final String LOGIN_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbLoginService!"
+
+    private static final String LOGIN_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbLoginService!"
 	    + "uo.sdi.business.impl.RemoteLoginService";
-    private static final String SEAT_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbSeatService!"
+
+    private static final String SEAT_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbSeatService!"
 	    + "uo.sdi.business.impl.RemoteSeatService";
-    private static final String TRIP_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbTripService!"
+
+    private static final String TRIP_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbTripService!"
 	    + "uo.sdi.business.impl.RemoteTripService";
-    private static final String USER_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbUserService!"
+
+    private static final String USER_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbUserService!"
 	    + "uo.sdi.business.impl.RemoteUserService";
-    private static final String RATING_SERVICE_JNDI_KEY = "sdi200/"
-	    + "sdi-200EJB/" + "EjbRatingService!"
+
+    private static final String RATING_SERVICE_JNDI_KEY = "sdi3-200/"
+	    + "sdi3-200.EJB/" + "EjbRatingService!"
 	    + "uo.sdi.business.impl.RemoteRatingService";
 
     @Override
@@ -36,7 +41,9 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
 	try {
 	    Context ctx = new InitialContext();
 	    return (LoginService) ctx.lookup(LOGIN_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
@@ -46,7 +53,9 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
 	try {
 	    Context ctx = new InitialContext();
 	    return (UserService) ctx.lookup(USER_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
@@ -56,7 +65,9 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
 	try {
 	    Context ctx = new InitialContext();
 	    return (TripService) ctx.lookup(TRIP_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
@@ -66,7 +77,9 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
 	try {
 	    Context ctx = new InitialContext();
 	    return (SeatService) ctx.lookup(SEAT_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
@@ -77,7 +90,9 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
 	    Context ctx = new InitialContext();
 	    return (ApplicationService) ctx
 		    .lookup(APPLICATION_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
@@ -86,9 +101,10 @@ public class RemoteEjbServiceLocator implements ServicesFactory {
     public RatingService getRatingService() {
 	try {
 	    Context ctx = new InitialContext();
-	    return (RatingService) ctx
-		    .lookup(RATING_SERVICE_JNDI_KEY);
-	} catch (Exception e) {
+	    return (RatingService) ctx.lookup(RATING_SERVICE_JNDI_KEY);
+	}
+
+	catch (Exception e) {
 	    throw new RuntimeException("JNDI problem", e);
 	}
     }
